@@ -48,7 +48,7 @@ public class SerialClient extends Network {
 	}
 
 	@Override
-	void connect(String ip) {
+	boolean connect(String ip) {
 		disconnect();
 		try {
 			socket = new Socket(ip, 10007);
@@ -59,11 +59,14 @@ public class SerialClient extends Network {
 
 			Thread rec = new Thread(new ReceiverThread());
 			rec.start();
+			return true;
 		} catch (UnknownHostException e) {
 			System.err.println("Don't know about host");
+			return false;
 		} catch (IOException e) {
 			System.err.println("Couldn't get I/O for the connection. ");
 			JOptionPane.showMessageDialog(null, "Cannot connect to server!");
+			return false;
 		}
 	}
 

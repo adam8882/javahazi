@@ -32,11 +32,12 @@ public class Control {
 		net.connect("localhost");
 	}
 
-	public void startClient(String IP) {
+	public boolean startClient(String IP) {
 		if (net != null)
 			net.disconnect();
 		net = new SerialClient(this);
-		net.connect(IP);
+		return net.connect(IP);
+
 	}
 
 	public void sendMatrix(Integer[][] matrix) {
