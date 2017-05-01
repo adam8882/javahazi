@@ -47,7 +47,7 @@ public class SerialClient extends Network {
 	}
 
 	@Override
-	boolean connect(String ip) {
+	void connect(String ip) {
 		disconnect();
 		try {
 			socket = new Socket(ip, 10007);
@@ -58,14 +58,12 @@ public class SerialClient extends Network {
 
 			Thread rec = new Thread(new ReceiverThread());
 			rec.start();
-			return true;
+			ctrl.connected();
 		} catch (UnknownHostException e) {
 			System.err.println("Host nem található.");
-			return false;
 		} catch (IOException e) {
 			System.err.println("Szerver nem elérhető!");
 			JOptionPane.showMessageDialog(null, "Szerver nem elérhető!");
-			return false;
 		}
 	}
 
@@ -96,17 +94,14 @@ public class SerialClient extends Network {
 	}
 
 	@Override
-	boolean sendSeed(int seed) {
+	void sendSeed(int seed) {
 		if (out == null)
-			return true;
 		try {
 			out.writeByte(3);
 			out.writeObject(seed);
 			out.flush();
-			return false;
 		} catch (IOException ex) {
 			System.err.println("Seed küldés hiba.");
-			return true;
 		}
 	}
 

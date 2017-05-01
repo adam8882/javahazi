@@ -171,11 +171,7 @@ public class FrameGUI extends JFrame {
         return net;
     }
 
-    public void clientConnected() {
-        isConnected = true;
-    }
-
-    public void serverConnected() {
+    public void connected() {
         isConnected = true;
     }
 }

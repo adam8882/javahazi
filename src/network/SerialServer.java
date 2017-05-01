@@ -28,7 +28,7 @@ public class SerialServer extends Network {
             try {
                 System.out.println("Várakozás a kliensre");
                 clientSocket = serverSocket.accept();
-                c.clientConnected();
+                c.connected();
                 System.out.println("Kliens csatlakozott.");
             } catch (IOException e) {
                 System.err.println("Kliens csatlakozása sikertelen.");
@@ -76,17 +76,15 @@ public class SerialServer extends Network {
     }
 
     @Override
-    boolean connect(String ip) {
+    void connect(String ip) {
         disconnect();
         try {
             serverSocket = new ServerSocket(10007);
 
             Thread rec = new Thread(new ReceiverThread());
             rec.start();
-            return true;
         } catch (IOException e) {
             System.err.println("Nem elérhető a port.");
-            return false;
         }
     }
 
@@ -117,17 +115,14 @@ public class SerialServer extends Network {
     }
 
     @Override
-    boolean sendSeed(int seed) {
+    void sendSeed(int seed) {
         if (out == null)
-            return true;
         try {
             out.writeByte(3);
             out.writeObject(seed);
             out.flush();
-            return false;
         } catch (IOException ex) {
             System.err.println("Seed küldés hiba.");
-            return true;
         }
     }
 

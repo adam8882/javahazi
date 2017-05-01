@@ -18,7 +18,7 @@ abstract class Network {
 		ctrl = c;
 	}
 
-	abstract boolean connect(String ip);
+	abstract void connect(String ip);
 
 	abstract void disconnect();
 
@@ -26,5 +26,5 @@ abstract class Network {
 
 	abstract void sendScore(int score);
 
-	abstract boolean sendSeed(int seed);
+	abstract void sendSeed(int seed);
 }

@@ -32,12 +32,11 @@ public class Control {
 		net.connect("localhost");
 	}
 
-	public boolean startClient(String IP) {
+	public void startClient(String IP) {
 		if (net != null)
 			net.disconnect();
 		net = new SerialClient(this);
-		return net.connect(IP);
-
+		net.connect(IP);
 	}
 
 	public void sendMatrix(Integer[][] matrix) {
@@ -56,10 +55,9 @@ public class Control {
 		net.sendScore(score);
 	}
 
-	public boolean sendSeed(int seed) {
+	public void sendSeed(int seed) {
 		if (net == null)
-			return true;
-		return net.sendSeed(seed);
+		net.sendSeed(seed);
 	}
 
 	public void matrixReceived(Integer[][] matrix) {
@@ -80,7 +78,7 @@ public class Control {
 		gui.setNetSeed(seed);
 	}
 
-	public void clientConnected(){
-		gui.clientConnected();
+	public void connected(){
+		gui.connected();
 	}
 }
