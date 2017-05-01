@@ -29,13 +29,16 @@ public class MultiPlayer {
             net.sendSeed(net_seed);
         }
         //Network end*/
-        Field gameField1 = new Field(0);
+        fGUI.setLayout(new GridLayout(2, 1));
+        fGUI.getNet().sendSeed(fGUI.net_seed);
+
+        Field gameField1 = new Field(fGUI.net_seed);
+
         JLabel points1 = new JLabel(String.valueOf(gameField1.getScore()));
         JLabel points2 = new JLabel("0");
         DrawArea drawarea1 = new DrawArea(gameField1);
-        //Network
         DrawArea drawarea2 = new DrawArea(fGUI);
-        //Network end
+
         fGUI.add(drawarea1);
         fGUI.add(drawarea2);
         fGUI.add(points1);
@@ -43,16 +46,16 @@ public class MultiPlayer {
         drawarea1.setPreferredSize(new Dimension(300,600));
         drawarea2.setPreferredSize(new Dimension(300,600));
         fGUI.requestFocusInWindow();
+
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 points1.setText(String.valueOf(gameField1.getScore()));
-                //Network
                 points2.setText(String.valueOf(fGUI.net_score));
                 fGUI.getNet().sendMatrix(gameField1.getMatrix());
                 fGUI.getNet().sendScore(gameField1.getScore());
-                //Network end
+
                 fGUI.update(fGUI.getBufferStrategy().getDrawGraphics());
                 fGUI.getBufferStrategy().show();
                 fGUI.pack();

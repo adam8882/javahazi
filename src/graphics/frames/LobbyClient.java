@@ -1,8 +1,6 @@
 package graphics.frames;
 
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -77,11 +75,9 @@ public class LobbyClient {
 				timer.scheduleAtFixedRate(new TimerTask() {
 					@Override
 					public void run() {
-						if(fGUI.isConnected()) {
+						if(fGUI.isConnected() && fGUI.net_seed != 0) {
 							timer.cancel();
 							fGUI.getContentPane().removeAll();
-							fGUI.setLayout(new GridLayout(2, 1));
-							System.out.print("kliens");
 							fGUI.setActualFrame(8);
 						}
 					}

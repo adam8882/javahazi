@@ -117,6 +117,7 @@ public class SerialServer extends Network {
     @Override
     void sendSeed(int seed) {
         if (out == null)
+            return;
         try {
             out.writeByte(3);
             out.writeObject(seed);

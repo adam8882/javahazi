@@ -5,20 +5,17 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import engine.Field;
 import graphics.FrameGUI;
 
 public class LobbyServer {
@@ -93,9 +90,11 @@ public class LobbyServer {
 		            public void run() {
 		            	if(fGUI.isConnected()) {
 							timer.cancel();
+							Random rand = new Random();
+							int net_seed = rand.nextInt(100000);
+							fGUI.setNetSeed(net_seed);
+							System.out.println(fGUI.net_seed);
 							fGUI.getContentPane().removeAll();
-							fGUI.setLayout(new GridLayout(2, 1));
-							System.out.print("szerver");
 		            		fGUI.setActualFrame(8);
 		            	}
 		            }

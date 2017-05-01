@@ -49,7 +49,7 @@ public class Control {
 		net.sendMatrix(matrix2);
 	}
 
-	public void sendScore(int score) {
+	public void  sendScore(int score) {
 		if (net == null)
 			return;
 		net.sendScore(score);
@@ -57,6 +57,7 @@ public class Control {
 
 	public void sendSeed(int seed) {
 		if (net == null)
+			return;
 		net.sendSeed(seed);
 	}
 
