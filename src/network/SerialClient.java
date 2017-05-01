@@ -18,7 +18,6 @@ public class SerialClient extends Network {
 	private class ReceiverThread implements Runnable {
 
 		public void run() {
-			System.out.println("Waiting for points...");
 			try {
 				while (true) {
 					switch (in.readByte()) {
@@ -40,7 +39,7 @@ public class SerialClient extends Network {
 				}
 			} catch (Exception ex) {
 				System.out.println(ex.getMessage());
-				System.err.println("Server disconnected!");
+				System.err.println("Szerver lecsatlakozott!");
 			} finally {
 				disconnect();
 			}
@@ -61,11 +60,11 @@ public class SerialClient extends Network {
 			rec.start();
 			return true;
 		} catch (UnknownHostException e) {
-			System.err.println("Don't know about host");
+			System.err.println("Host nem található.");
 			return false;
 		} catch (IOException e) {
-			System.err.println("Couldn't get I/O for the connection. ");
-			JOptionPane.showMessageDialog(null, "Cannot connect to server!");
+			System.err.println("Szerver nem elérhető!");
+			JOptionPane.showMessageDialog(null, "Szerver nem elérhető!");
 			return false;
 		}
 	}
@@ -74,13 +73,12 @@ public class SerialClient extends Network {
 	void sendMatrix(Integer[][] matrix) {
 		if (out == null)
 			return;
-		System.out.println("Sending matrix to Server");
 		try {
 			out.writeByte(1);
 			out.writeObject(matrix);
 			out.flush();
 		} catch (IOException ex) {
-			System.err.println("Send error.");
+			System.err.println("Mátrix küldés hiba.");
 		}
 	}
 
@@ -88,13 +86,12 @@ public class SerialClient extends Network {
 	void sendScore(int score) {
 		if (out == null)
 			return;
-		System.out.println("Sending score to Server");
 		try {
 			out.writeByte(2);
 			out.writeObject(score);
 			out.flush();
 		} catch (IOException ex) {
-			System.err.println("Send error.");
+			System.err.println("Score küldés hiba.");
 		}
 	}
 
@@ -102,14 +99,13 @@ public class SerialClient extends Network {
 	boolean sendSeed(int seed) {
 		if (out == null)
 			return true;
-		System.out.println("Sending seed to Client");
 		try {
 			out.writeByte(3);
 			out.writeObject(seed);
 			out.flush();
 			return false;
 		} catch (IOException ex) {
-			System.err.println("Send error.");
+			System.err.println("Seed küldés hiba.");
 			return true;
 		}
 	}
@@ -124,7 +120,7 @@ public class SerialClient extends Network {
 			if (socket != null)
 				socket.close();
 		} catch (IOException ex) {
-			System.err.println("Error while closing conn.");
+			System.err.println("Hiba a kapcsolat lezárásakor.");
 		}
 	}
 }
