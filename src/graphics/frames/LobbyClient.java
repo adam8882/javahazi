@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -19,31 +21,6 @@ import graphics.FrameGUI;
 public class LobbyClient {
 
 	public LobbyClient(FrameGUI fGUI) {
-		/*JLabel nameLabel = new JLabel("Name: ");
-		JLabel ipLabel = new JLabel("IP Adress: ");
-		
-		JTextField nameField = new JTextField();
-		JTextField ipField = new JTextField();
-		
-		JButton connect = new JButton("Connect");
-		
-	    JPanel labelPanel = new JPanel(new GridLayout(2, 1));
-	    JPanel fieldPanel = new JPanel(new GridLayout(2, 1));
-	    JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT));
-	    
-	    JPanel panel = new JPanel(new BorderLayout());
-	    panel.add(labelPanel, BorderLayout.WEST);
-	    panel.add(fieldPanel, BorderLayout.CENTER);
-	    labelPanel.add(nameLabel);
-	    labelPanel.add(ipLabel);
-	    p.add(nameField);
-	    p.add(ipField);
-	    fieldPanel.add(nameField);
-	    fieldPanel.add(p);
-		fGUI.add(panel);
-		//fGUI.pack();
-		System.out.println("sss");*/
-		//fGUI.setSize(new Dimension(600,400));
 		fGUI.setTitle("Multiplayer client lobby");
 		
 	    JPanel labelPanel = new JPanel(new GridLayout(2, 1));
@@ -55,7 +32,7 @@ public class LobbyClient {
 		nameLabel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 		nameLabel.setFont(new Font("Serif", Font.BOLD, 30));
 		
-		JLabel ipLabel = new JLabel("IP Adress: ");
+		JLabel ipLabel = new JLabel("IP Address: ");
 		ipLabel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 		ipLabel.setFont(new Font("Serif", Font.BOLD, 30));
 		
@@ -92,6 +69,22 @@ public class LobbyClient {
 		fGUI.add(p2);
 		fGUI.pack();
 		fGUI.requestFocusInWindow();
+
+		conButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fGUI.getNet().startClient("localhost");
+				Timer timer = new Timer();
+				timer.scheduleAtFixedRate(new TimerTask() {
+					@Override
+					public void run() {
+						if(fGUI.isConnected()) {
+
+						}
+					}
+				}, 0, 1);
+			}
+		});
+
         backButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
             	fGUI.getContentPane().removeAll();
