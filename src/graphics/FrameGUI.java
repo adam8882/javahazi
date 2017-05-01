@@ -5,8 +5,7 @@ import java.awt.event.KeyListener;
 import java.sql.Time;
 import java.util.Random;
 import java.util.TimerTask;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.*;
 import java.util.Timer;
 import engine.Field;
 import graphics.frames.*;
@@ -167,5 +166,21 @@ public class FrameGUI extends JFrame {
 
     public boolean isConnected() {
         return isConnected;
+    }
+
+    public void serverDisconnected() {
+        JOptionPane.showMessageDialog(null, "A szerver lecsatlakozott!");
+    }
+
+    public void serverNotAvailable() {
+        JOptionPane.showMessageDialog(null, "A szerver nem elérhető!");
+    }
+
+    public void clientConnected() {
+        //JOptionPane.showMessageDialog(null, "Kliens csatlakozott.");
+    }
+
+    public void clientDisconnected() {
+        JOptionPane.showMessageDialog(null, "Kliens lecsatlakozott.");
     }
 }

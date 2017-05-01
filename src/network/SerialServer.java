@@ -30,6 +30,7 @@ public class SerialServer extends Network {
                 clientSocket = serverSocket.accept();
                 c.connected(true);
                 System.out.println("Kliens csatlakozott.");
+                c.clientConnected();
             } catch (IOException e) {
                 System.err.println("Kliens csatlakozása sikertelen.");
                 disconnect();
@@ -69,6 +70,7 @@ public class SerialServer extends Network {
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
                 System.err.println("Kliens lecsatlakozott!");
+                c.clientDisconnected();
             } finally {
                 disconnect();
             }

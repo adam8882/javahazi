@@ -9,6 +9,8 @@ package network;
 import engine.Field;
 import graphics.FrameGUI;
 
+import javax.swing.*;
+
 /**
  *
  * @author Predi
@@ -86,5 +88,21 @@ public class Control {
 
 	public void connected(boolean bool){
 		gui.connected(bool);
+	}
+
+	public void serverDisconnected() {
+		gui.serverDisconnected();
+	}
+
+	public void serverNotAvailable() {
+		gui.serverNotAvailable();
+	}
+
+	public void clientConnected() {
+		gui.clientConnected();
+	}
+
+	public void clientDisconnected() {
+		gui.clientDisconnected();
 	}
 }

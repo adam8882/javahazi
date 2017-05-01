@@ -10,9 +10,11 @@ public class SerialClient extends Network {
 	private Socket socket = null;
 	private ObjectOutputStream out = null;
 	private ObjectInputStream in = null;
+	private Control c;
 
 	SerialClient(Control c) {
 		super(c);
+		this.c = c;
 	}
 
 	private class ReceiverThread implements Runnable {
@@ -40,7 +42,7 @@ public class SerialClient extends Network {
 			} catch (Exception ex) {
 				System.out.println(ex.getMessage());
 				System.err.println("Szerver lecsatlakozott!");
-
+				c.serverDisconnected();
 			} finally {
 				disconnect();
 			}
@@ -62,9 +64,10 @@ public class SerialClient extends Network {
 			ctrl.connected(true);
 		} catch (UnknownHostException e) {
 			System.err.println("Host nem található.");
+			c.serverNotAvailable();
 		} catch (IOException e) {
 			System.err.println("Szerver nem elérhető!");
-			JOptionPane.showMessageDialog(null, "Szerver nem elérhető!");
+			c.serverNotAvailable();
 		}
 	}
 
