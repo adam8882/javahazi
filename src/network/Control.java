@@ -79,4 +79,8 @@ public class Control {
 			return;
 		gui.setNetSeed(seed);
 	}
+
+	public void clientConnected(){
+		gui.clientConnected();
+	}
 }
