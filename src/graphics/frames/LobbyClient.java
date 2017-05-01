@@ -71,17 +71,20 @@ public class LobbyClient {
 		conButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				fGUI.getNet().startClient("localhost");
-				Timer timer = new Timer();
-				timer.scheduleAtFixedRate(new TimerTask() {
-					@Override
-					public void run() {
-						if(fGUI.isConnected() && fGUI.net_seed != 0) {
-							timer.cancel();
-							fGUI.getContentPane().removeAll();
-							fGUI.setActualFrame(8);
+				if(fGUI.isConnected)
+				{
+					Timer timer = new Timer();
+					timer.scheduleAtFixedRate(new TimerTask() {
+						@Override
+						public void run() {
+							if(fGUI.net_seed != 0) {
+								timer.cancel();
+								fGUI.getContentPane().removeAll();
+								fGUI.setActualFrame(8);
+							}
 						}
-					}
-				}, 0, 1);
+					}, 0, 1);
+				}
 			}
 		});
 

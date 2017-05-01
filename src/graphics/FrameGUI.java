@@ -2,6 +2,7 @@ package graphics;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.Time;
 import java.util.Random;
 import java.util.TimerTask;
 import javax.swing.JFrame;
@@ -23,6 +24,9 @@ public class FrameGUI extends JFrame {
 	public FrameGUI(Control net) {
 		MainMenu mM = new MainMenu(this);
 		this.setResizable(false);
+		//initMainMenu();
+		//initSinglePlayer();
+
         //Network
         isConnected = false;
         this.net = net;
@@ -47,8 +51,9 @@ public class FrameGUI extends JFrame {
         }
         //Network end
 		Field gameField1 = new Field(net_seed);
-		new Field(666);
+		//Field gameField2 = new Field(666);
 		JLabel points1 = new JLabel(String.valueOf(gameField1.getScore()));
+        //JLabel points2 = new JLabel(String.valueOf(gameField2.getScore()));
         JLabel points2 = new JLabel("0");
 		DrawArea drawarea1 = new DrawArea(gameField1);
 		//Network
@@ -156,8 +161,8 @@ public class FrameGUI extends JFrame {
         return net;
     }
 
-    public void connected() {
-        isConnected = true;
+    public void connected(boolean bool) {
+        isConnected = bool;
     }
 
     public boolean isConnected() {

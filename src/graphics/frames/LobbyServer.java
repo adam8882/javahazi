@@ -84,6 +84,7 @@ public class LobbyServer {
         hostButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
 				fGUI.getNet().startServer();
+				hostButton.setEnabled(false);
 				Timer timer = new Timer();
 		        timer.scheduleAtFixedRate(new TimerTask() {
 		            @Override
@@ -91,9 +92,8 @@ public class LobbyServer {
 		            	if(fGUI.isConnected()) {
 							timer.cancel();
 							Random rand = new Random();
-							int net_seed = rand.nextInt(100000);
+							int net_seed = rand.nextInt(10000)+1;
 							fGUI.setNetSeed(net_seed);
-							System.out.println(fGUI.net_seed);
 							fGUI.getContentPane().removeAll();
 		            		fGUI.setActualFrame(8);
 		            	}

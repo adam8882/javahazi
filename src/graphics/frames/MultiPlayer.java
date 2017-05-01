@@ -18,17 +18,6 @@ import java.util.TimerTask;
 
 public class MultiPlayer {
     public MultiPlayer(FrameGUI fGUI) {
-        /*//Network
-        if(isServer) {
-            net.startServer();
-        }
-        else {
-            net.startClient("127.0.0.1");
-            Random rand = new Random();
-            net_seed = rand.nextInt();
-            net.sendSeed(net_seed);
-        }
-        //Network end*/
         fGUI.setLayout(new GridLayout(2, 1));
         fGUI.getNet().sendSeed(fGUI.net_seed);
 
@@ -83,6 +72,7 @@ public class MultiPlayer {
                         fGUI.getContentPane().removeAll();
                         timer.cancel();
                         fGUI.setActualFrame(7);
+                        fGUI.isConnected = false;
                         break;
                 }
             }

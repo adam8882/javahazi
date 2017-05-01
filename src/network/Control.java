@@ -25,6 +25,11 @@ public class Control {
 		gui = g;
 	}
 
+	//Nem biztos hogy kell
+	public FrameGUI getGUI() {
+		return this.gui;
+	}
+
 	public void startServer() {
 		if (net != null)
 			net.disconnect();
@@ -79,7 +84,7 @@ public class Control {
 		gui.setNetSeed(seed);
 	}
 
-	public void connected(){
-		gui.connected();
+	public void connected(boolean bool){
+		gui.connected(bool);
 	}
 }

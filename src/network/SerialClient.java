@@ -40,6 +40,7 @@ public class SerialClient extends Network {
 			} catch (Exception ex) {
 				System.out.println(ex.getMessage());
 				System.err.println("Szerver lecsatlakozott!");
+
 			} finally {
 				disconnect();
 			}
@@ -58,7 +59,7 @@ public class SerialClient extends Network {
 
 			Thread rec = new Thread(new ReceiverThread());
 			rec.start();
-			ctrl.connected();
+			ctrl.connected(true);
 		} catch (UnknownHostException e) {
 			System.err.println("Host nem található.");
 		} catch (IOException e) {
