@@ -27,7 +27,7 @@ public class LobbyServer {
     	try {
     		ipAdress = InetAddress.getLocalHost().getHostAddress();
 		} catch (UnknownHostException e1) {
-			// TODO Auto-generated catch block
+			ipAdress = "Nincs IP";
 			e1.printStackTrace();
 		}
 		
