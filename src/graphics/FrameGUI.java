@@ -1,38 +1,24 @@
 package graphics;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.Time;
 import java.util.Random;
-import java.util.Timer;
 import java.util.TimerTask;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-
+import java.util.Timer;
 import engine.Field;
-import graphics.frames.LobbyClient;
-import graphics.frames.LobbyServer;
-import graphics.frames.MainMenu;
-import graphics.frames.SinglePlayer;
+import graphics.frames.*;
 import network.Control;
 
 public class FrameGUI extends JFrame {
-	public DrawArea drawarea = new DrawArea(new Field(0));
-	public DrawArea drawarea1 = new DrawArea(new Field(0));
-	public DrawArea drawarea2 = new DrawArea(new Field(0));
-	Timer timer = new Timer();
-
 	//Network
     Control net;
     Integer [][] net_matrix;
-    int net_score;
-    int net_seed;
-    boolean isConnected;
+    public int net_score;
+    public int net_seed;
+    public boolean isConnected;
     //Network end
 	
 	public FrameGUI(Control net) {
@@ -80,6 +66,7 @@ public class FrameGUI extends JFrame {
         drawarea1.setPreferredSize(new Dimension(300,600));
         drawarea2.setPreferredSize(new Dimension(300,600));
         this.requestFocusInWindow();
+        Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -150,20 +137,23 @@ public class FrameGUI extends JFrame {
     //Network end
     public void setActualFrame(int actualFrame) {
     	switch (actualFrame) {
-        case 1:	SinglePlayer sp = new SinglePlayer(this);
+            case 1:	SinglePlayer sp = new SinglePlayer(this);
                 break;
-        case 2: LobbyServer ls = new LobbyServer(this);
+            case 2: LobbyServer ls = new LobbyServer(this);
     			break;
-        case 3: LobbyClient lc = new LobbyClient(this);
+            case 3: LobbyClient lc = new LobbyClient(this);
     			break;
-        case 4: 
+            case 4:
     			break;
-        case 5: 
+            case 5:
     			break;
-        case 6: 
+            case 6:
     			break;
-        case 7: MainMenu mm = new MainMenu(this);
+            case 7: MainMenu mm = new MainMenu(this);
     			break;
+            case 8: MultiPlayer mp = new MultiPlayer(this);
+                break;
+
     	}
     }
 

@@ -78,7 +78,11 @@ public class LobbyClient {
 					@Override
 					public void run() {
 						if(fGUI.isConnected()) {
-
+							timer.cancel();
+							fGUI.getContentPane().removeAll();
+							fGUI.setLayout(new GridLayout(2, 1));
+							System.out.print("kliens");
+							fGUI.setActualFrame(8);
 						}
 					}
 				}, 0, 1);

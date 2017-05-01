@@ -15,9 +15,9 @@ import java.util.TimerTask;
 /**
  * Created by knagymate on 2017. 05. 01..
  */
-//test
+
 public class MultiPlayer {
-    public void MultiPlayer(FrameGUI fGUI) {
+    public MultiPlayer(FrameGUI fGUI) {
         /*//Network
         if(isServer) {
             net.startServer();
@@ -29,11 +29,8 @@ public class MultiPlayer {
             net.sendSeed(net_seed);
         }
         //Network end*/
-        /*
         Field gameField1 = new Field(0);
-        //Field gameField2 = new Field(666);
         JLabel points1 = new JLabel(String.valueOf(gameField1.getScore()));
-        //JLabel points2 = new JLabel(String.valueOf(gameField2.getScore()));
         JLabel points2 = new JLabel("0");
         DrawArea drawarea1 = new DrawArea(gameField1);
         //Network
@@ -50,23 +47,22 @@ public class MultiPlayer {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                System.out.println("multi");
                 points1.setText(String.valueOf(gameField1.getScore()));
-                //points2.setText(String.valueOf(gameField2.getScore()));
                 //Network
-                points2.setText(String.valueOf(net_score));
+                points2.setText(String.valueOf(fGUI.net_score));
                 fGUI.getNet().sendMatrix(gameField1.getMatrix());
                 fGUI.getNet().sendScore(gameField1.getScore());
                 //Network end
+                fGUI.update(fGUI.getBufferStrategy().getDrawGraphics());
+                fGUI.getBufferStrategy().show();
+                fGUI.pack();
             }
-        }, 0, 100);
+        }, 0, 1);
         //Billentyű figyelés
         fGUI.requestFocusInWindow();
         fGUI.addKeyListener(new KeyListener() {
             @Override
             public void keyPressed(KeyEvent e) {
-
-
                 switch (e.getKeyCode()) {
                     case (KeyEvent.VK_RIGHT):
                         gameField1.shiftRight();   //shiftRight()
@@ -95,6 +91,6 @@ public class MultiPlayer {
             @Override
             public void keyReleased(KeyEvent e) {
             }
-        });*/
+        });
     }
 }

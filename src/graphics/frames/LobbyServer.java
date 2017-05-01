@@ -92,7 +92,11 @@ public class LobbyServer {
 		            @Override
 		            public void run() {
 		            	if(fGUI.isConnected()) {
-		            		//Do nothing?
+							timer.cancel();
+							fGUI.getContentPane().removeAll();
+							fGUI.setLayout(new GridLayout(2, 1));
+							System.out.print("szerver");
+		            		fGUI.setActualFrame(8);
 		            	}
 		            }
 		        }, 0, 1);
