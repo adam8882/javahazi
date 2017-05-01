@@ -54,7 +54,7 @@ public class LobbyServer {
     	try {
     		ipField.setText(InetAddress.getLocalHost().getHostAddress());
 		} catch (UnknownHostException e1) {
-			// TODO Auto-generated catch block
+			ipField.setText("Nincs IP");
 			e1.printStackTrace();
 		}
 		
