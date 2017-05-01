@@ -26,12 +26,12 @@ public class SerialServer extends Network {
 
         public void run() {
             try {
-                System.out.println("Waiting for Client");
+                System.out.println("Várakozás a kliensre");
                 clientSocket = serverSocket.accept();
                 c.clientConnected();
-                System.out.println("Client connected.");
+                System.out.println("Kliens csatlakozott.");
             } catch (IOException e) {
-                System.err.println("Accept failed.");
+                System.err.println("Kliens csatlakozása sikertelen.");
                 disconnect();
                 return;
             }
@@ -41,7 +41,7 @@ public class SerialServer extends Network {
                 in = new ObjectInputStream(clientSocket.getInputStream());
                 out.flush();
             } catch (IOException e) {
-                System.err.println("Error while getting streams.");
+                System.err.println("Hiba a streamek lekérésekor.");
                 disconnect();
                 return;
             }
@@ -68,7 +68,7 @@ public class SerialServer extends Network {
                 }
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
-                System.err.println("Client disconnected!");
+                System.err.println("Kliens lecsatlakozott!");
             } finally {
                 disconnect();
             }
@@ -85,7 +85,7 @@ public class SerialServer extends Network {
             rec.start();
             return true;
         } catch (IOException e) {
-            System.err.println("Could not listen on port: 10007.");
+            System.err.println("Nem elérhető a port.");
             return false;
         }
     }
@@ -94,13 +94,12 @@ public class SerialServer extends Network {
     void sendMatrix(Integer[][] matrix) {
         if (out == null)
             return;
-        System.out.println("Sending matrix to Client");
         try {
             out.writeByte(1);
             out.writeObject(matrix);
             out.flush();
         } catch (IOException ex) {
-            System.err.println("Send error.");
+            System.err.println("Mátrix küldés hiba.");
         }
     }
 
@@ -108,13 +107,12 @@ public class SerialServer extends Network {
     void sendScore(int score) {
         if (out == null)
             return;
-        System.out.println("Sending score to Client");
         try {
             out.writeByte(2);
             out.writeObject(score);
             out.flush();
         } catch (IOException ex) {
-            System.err.println("Send error.");
+            System.err.println("Score küldés hiba.");
         }
     }
 
@@ -122,14 +120,13 @@ public class SerialServer extends Network {
     boolean sendSeed(int seed) {
         if (out == null)
             return true;
-        System.out.println("Sending seed to Client");
         try {
             out.writeByte(3);
             out.writeObject(seed);
             out.flush();
             return false;
         } catch (IOException ex) {
-            System.err.println("Send error.");
+            System.err.println("Seed küldés hiba.");
             return true;
         }
     }
