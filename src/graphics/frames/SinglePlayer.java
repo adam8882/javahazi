@@ -38,7 +38,7 @@ public class SinglePlayer {
                 fGUI.getBufferStrategy().show();
             	points.setText(String.valueOf(gameField.getScore()));
             }
-        }, 0, 1);
+        }, 0, 10);
         //Billentyű figyelés
         fGUI.addKeyListener(new KeyListener() {
             @Override
