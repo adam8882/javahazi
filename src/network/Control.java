@@ -46,6 +46,11 @@ public class Control {
 		net.connect(IP);
 	}
 
+	public void disconnect() {
+		if (net != null)
+			net.disconnect();
+	}
+
 	public void sendMatrix(Integer[][] matrix) {
 		if (net == null)
 			return;
