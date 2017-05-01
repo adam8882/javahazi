@@ -174,4 +174,8 @@ public class FrameGUI extends JFrame {
     public void connected() {
         isConnected = true;
     }
+
+    public boolean isConnected() {
+        return isConnected;
+    }
 }
