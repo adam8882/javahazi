@@ -68,7 +68,7 @@ public class Piece {
         		 this.color_T = Colors.T_COLOR_T;
         		 this.color_C = Colors.T_COLOR_C;
                  break;
-        case 7:  this.color_L = Colors.Z_COLOR_L;
+        default:  this.color_L = Colors.Z_COLOR_L;
         		 this.color_B = Colors.Z_COLOR_B;
         		 this.color_R = Colors.Z_COLOR_R;
         		 this.color_T = Colors.Z_COLOR_T;
