@@ -69,8 +69,7 @@ public class LobbyServer {
 		
 		labelPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 		fieldPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-		
-		
+
 		p2.setBorder(BorderFactory.createEmptyBorder(30,20,20,20));
 		p2.setPreferredSize(new Dimension(600,100));
 		labelPanel.add(nameLabel);
@@ -93,7 +92,7 @@ public class LobbyServer {
 		            @Override
 		            public void run() {
 		            	if(fGUI.isConnected()) {
-		            		
+		            		//Do nothing?
 		            	}
 		            }
 		        }, 0, 1);
