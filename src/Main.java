@@ -58,7 +58,8 @@ public class Main {
         frame.setVisible(true);
         frame.createBufferStrategy(2);
         BufferStrategy strategy = frame.getBufferStrategy();
-    	//while(true) {
+    	//
+        // while(true) {
     		//strategy = frame.getBufferStrategy();
         	////frame.update(frame.getBufferStrategy().getDrawGraphics());
             //frame.pack();
