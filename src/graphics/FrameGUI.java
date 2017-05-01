@@ -32,7 +32,7 @@ public class FrameGUI extends JFrame {
     Integer [][] net_matrix;
     int net_score;
     int net_seed;
-    boolean isClientConnected;
+    boolean isConnected;
     //Network end
 	
 	public FrameGUI(Control net) {
@@ -42,7 +42,7 @@ public class FrameGUI extends JFrame {
 		//initSinglePlayer();
 
         //Network
-        isClientConnected = false;
+        isConnected = false;
         this.net = net;
         net_matrix = new Integer[Field.WIDTH][Field.HEIGHT];
         for (int h = 0; h < Field.HEIGHT; h++)
@@ -172,6 +172,10 @@ public class FrameGUI extends JFrame {
     }
 
     public void clientConnected() {
-        isClientConnected = true;
+        isConnected = true;
+    }
+
+    public void serverConnected() {
+        isConnected = true;
     }
 }
