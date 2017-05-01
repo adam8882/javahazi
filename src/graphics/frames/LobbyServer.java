@@ -86,6 +86,15 @@ public class LobbyServer {
         hostButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
 				fGUI.getNet().startServer();
+				Timer timer = new Timer();
+		        timer.scheduleAtFixedRate(new TimerTask() {
+		            @Override
+		            public void run() {
+		            	if(fGUI.isConnected()) {
+		            		
+		            	}
+		            }
+		        }, 0, 1);
             }		
         });
         
