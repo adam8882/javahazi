@@ -98,7 +98,7 @@ public class LobbyServer {
 		            		fGUI.setActualFrame(8);
 		            	}
 		            }
-		        }, 0, 1);
+		        }, 0, 20);
             }		
         });
         

@@ -49,7 +49,7 @@ public class MultiPlayer {
                 fGUI.getBufferStrategy().show();
                 fGUI.pack();
             }
-        }, 0, 10);
+        }, 0, 20);
         //Billentyű figyelés
         fGUI.requestFocusInWindow();
         fGUI.addKeyListener(new KeyListener() {
