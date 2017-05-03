@@ -57,7 +57,6 @@ public class MainMenu {
 				  fGUI.getContentPane().removeAll();
 				  fGUI.setLayout(new GridLayout(1, 1));
 				  fGUI.setActualFrame(1);
-				  //initSinglePlayer();
 			  } 
 		} );
 		multiPlayerServerButton.addActionListener(new ActionListener() { 
@@ -65,7 +64,6 @@ public class MainMenu {
 				  fGUI.getContentPane().removeAll();
 				  fGUI.setLayout(new GridLayout(2, 2));
 				  fGUI.setActualFrame(2);
-				  //initMultiPlayer(true);
 			  } 
 		} );
         multiPlayerClientButton.addActionListener(new ActionListener() {
@@ -73,7 +71,6 @@ public class MainMenu {
             	fGUI.getContentPane().removeAll();
             	fGUI.setLayout(new GridLayout(2, 2));
             	fGUI.setActualFrame(3);
-                //initMultiPlayer(false);
             }
         } );
 	}

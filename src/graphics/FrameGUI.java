@@ -8,16 +8,16 @@ import javax.swing.*;
 
 public class FrameGUI extends JFrame {
     Control net;
-    Integer [][] net_matrix;
+    Integer[][] net_matrix;
     public int net_score;
     public int net_seed;
     public boolean isConnected;
-	
-	public FrameGUI(Control net) {
-		new MainMenu(this);
-		this.setResizable(false);
 
-		isConnected = false;
+    public FrameGUI(Control net) {
+        new MainMenu(this);
+        this.setResizable(false);
+
+        isConnected = false;
         this.net = net;
         net_matrix = new Integer[Field.WIDTH][Field.HEIGHT];
         for (int h = 0; h < Field.HEIGHT; h++)
@@ -25,10 +25,37 @@ public class FrameGUI extends JFrame {
                 net_matrix[w][h] = 0;
         net_score = 0;
         net_seed = 0;
-	}
+    }
 
-    public void setMatrix(Integer [][] net_matrix) {
-	    this.net_matrix = net_matrix;
+    public void setActualFrame(int actualFrame) {
+        switch (actualFrame) {
+            case 1:
+                new SinglePlayer(this);
+                break;
+            case 2:
+                new LobbyServer(this);
+                break;
+            case 3:
+                new LobbyClient(this);
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                new MainMenu(this);
+                break;
+            case 8:
+                new MultiPlayer(this);
+                break;
+
+        }
+    }
+
+    public void setMatrix(Integer[][] net_matrix) {
+        this.net_matrix = net_matrix;
     }
 
     public void setScore(int net_score) {
@@ -41,28 +68,6 @@ public class FrameGUI extends JFrame {
 
     public Integer[][] getMatrix() {
         return net_matrix;
-    }
-
-    public void setActualFrame(int actualFrame) {
-    	switch (actualFrame) {
-            case 1:	SinglePlayer sp = new SinglePlayer(this);
-                break;
-            case 2: LobbyServer ls = new LobbyServer(this);
-    			break;
-            case 3: LobbyClient lc = new LobbyClient(this);
-    			break;
-            case 4:
-    			break;
-            case 5:
-    			break;
-            case 6:
-    			break;
-            case 7: MainMenu mm = new MainMenu(this);
-    			break;
-            case 8: MultiPlayer mp = new MultiPlayer(this);
-                break;
-
-    	}
     }
 
     public Control getNet() {
