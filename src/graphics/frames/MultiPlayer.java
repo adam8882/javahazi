@@ -31,14 +31,16 @@ public class MultiPlayer {
         JButton exitButton = new JButton("Kilépés");
         DrawArea drawarea1 = new DrawArea(gameField);
         DrawArea drawarea2 = new DrawArea(fGUI);
+        JPanel panel = new JPanel();
+        fGUI.add(panel);
 
-        fGUI.add(drawarea1);
-        fGUI.add(drawarea2);
-        fGUI.add(points1);
-        fGUI.add(points2);
-        fGUI.add(level1);
-        fGUI.add(level2);
-        fGUI.add(exitButton);
+        panel.add(drawarea1);
+        panel.add(drawarea2);
+        panel.add(points1);
+        panel.add(points2);
+        panel.add(level1);
+        panel.add(level2);
+        panel.add(exitButton);
         drawarea1.setPreferredSize(new Dimension(300, 600));
         drawarea2.setPreferredSize(new Dimension(300, 600));
         fGUI.requestFocusInWindow();
@@ -60,8 +62,14 @@ public class MultiPlayer {
                 fGUI.update(fGUI.getBufferStrategy().getDrawGraphics());
                 fGUI.getBufferStrategy().show();
                 fGUI.pack();
+                if (gameField.getMatrix()[0][0] == 9) {
+                    ;
+                }
+
             }
         }, 0, 20);
+
+
 
         exitButton.addActionListener(new ActionListener() {
             @Override
@@ -69,6 +77,8 @@ public class MultiPlayer {
                 fGUI.getContentPane().removeAll();
                 timer.cancel();
                 fGUI.setActualFrame(7);
+                fGUI.getNet().disconnect();
+                fGUI.isConnected = false;
             }
         });
 

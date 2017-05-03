@@ -25,13 +25,16 @@ public class SinglePlayer {
         Timer timer = new Timer();
         Field gameField = new Field(seed);
         DrawArea drawarea = new DrawArea(gameField);
-        fGUI.add(drawarea);
         JLabel points = new JLabel("Pontszám: " + String.valueOf(gameField.getScore()));
         JLabel level = new JLabel("LvL: " + String.valueOf(gameField.getLevel()));
         JButton exitButton = new JButton("Kilépés");
-        fGUI.add(points);
-        fGUI.add(level);
-        fGUI.add(exitButton);
+        JPanel panel = new JPanel();
+        fGUI.add(panel);
+
+        panel.add(drawarea);
+        panel.add(points);
+        panel.add(level);
+        panel.add(exitButton);
         drawarea.setPreferredSize(new Dimension(10 * Dimensions.BLOCK_SIZE, 20 * Dimensions.BLOCK_SIZE));
         fGUI.requestFocusInWindow();
         fGUI.pack();
