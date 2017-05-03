@@ -77,7 +77,7 @@ public class LobbyClient {
 					timer.scheduleAtFixedRate(new TimerTask() {
 						@Override
 						public void run() {
-							if(fGUI.net_seed != 0) {
+							if(fGUI.getSeed() != 0) {
 								timer.cancel();
 								fGUI.getContentPane().removeAll();
 								fGUI.setActualFrame(8);

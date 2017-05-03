@@ -18,6 +18,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class SinglePlayer {
+    boolean isGameOver = false;
     public SinglePlayer(FrameGUI fGUI) {
         BufferStrategy strategy = fGUI.getBufferStrategy();
         Random rand = new Random();
@@ -46,6 +47,10 @@ public class SinglePlayer {
                 fGUI.getBufferStrategy().show();
                 points.setText("Pontszám: " + String.valueOf(gameField.getScore()));
                 level.setText("LvL: " + String.valueOf(gameField.getLevel()));
+                if (!isGameOver && gameField.getMatrix()[0][0] == 9) {
+                    JOptionPane.showMessageDialog(null, "Game Over\nElért pontszámod: " + String.valueOf(gameField.getScore()));
+                    isGameOver = true;
+                }
             }
         }, 0, 20);
 

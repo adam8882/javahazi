@@ -18,11 +18,12 @@ import java.util.TimerTask;
  */
 
 public class MultiPlayer {
+    boolean isGameOver = false;
     public MultiPlayer(FrameGUI fGUI) {
         fGUI.setLayout(new GridLayout(2, 1));
-        fGUI.getNet().sendSeed(fGUI.net_seed);
+        fGUI.getNet().sendSeed(fGUI.getSeed());
 
-        Field gameField = new Field(fGUI.net_seed);
+        Field gameField = new Field(fGUI.getSeed());
 
         JLabel points1 = new JLabel("Pontszám: " + String.valueOf(gameField.getScore()));
         JLabel level1 = new JLabel("LvL: " + String.valueOf(gameField.getLevel()));
@@ -51,9 +52,9 @@ public class MultiPlayer {
             public void run() {
                 points1.setText("Pontszám: " + String.valueOf(gameField.getScore()));
                 level1.setText("LvL: " + String.valueOf(gameField.getLevel()));
-                points2.setText("Pontszám: " + String.valueOf(fGUI.net_score));
+                points2.setText("Pontszám: " + String.valueOf(fGUI.getScore()));
                 int lvl2 = 0;
-                while (fGUI.net_score > (500 + lvl2*lvl2*1000 - 1))
+                while (fGUI.getScore() > (500 + lvl2*lvl2*1000 - 1))
                     lvl2 += 1;
                 level2.setText("LvL: " + Integer.toString(lvl2));
                 fGUI.getNet().sendMatrix(gameField.getMatrix());
@@ -62,8 +63,14 @@ public class MultiPlayer {
                 fGUI.update(fGUI.getBufferStrategy().getDrawGraphics());
                 fGUI.getBufferStrategy().show();
                 fGUI.pack();
-                if (gameField.getMatrix()[0][0] == 9) {
-                    ;
+                if (!isGameOver && gameField.getMatrix()[0][0] == 9 && fGUI.getMatrix()[0][0] == 9) {
+                    if(gameField.getScore() > fGUI.getScore())
+                        JOptionPane.showMessageDialog(null, "Gratulálok! Nyertél!");
+                    else if (gameField.getScore() == fGUI.getScore())
+                        JOptionPane.showMessageDialog(null, "Döntetlen!");
+                    else
+                        JOptionPane.showMessageDialog(null, "Vesztettél!");
+                    isGameOver = true;
                 }
 
             }
