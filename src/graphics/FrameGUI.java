@@ -1,33 +1,23 @@
 package graphics;
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.sql.Time;
-import java.util.Random;
-import java.util.TimerTask;
-import javax.swing.*;
-import java.util.Timer;
+
 import engine.Field;
 import graphics.frames.*;
 import network.Control;
 
+import javax.swing.*;
+
 public class FrameGUI extends JFrame {
-	//Network
     Control net;
     Integer [][] net_matrix;
     public int net_score;
     public int net_seed;
     public boolean isConnected;
-    //Network end
 	
 	public FrameGUI(Control net) {
-		MainMenu mM = new MainMenu(this);
+		new MainMenu(this);
 		this.setResizable(false);
-		//initMainMenu();
-		//initSinglePlayer();
 
-        //Network
-        isConnected = false;
+		isConnected = false;
         this.net = net;
         net_matrix = new Integer[Field.WIDTH][Field.HEIGHT];
         for (int h = 0; h < Field.HEIGHT; h++)
@@ -35,89 +25,8 @@ public class FrameGUI extends JFrame {
                 net_matrix[w][h] = 0;
         net_score = 0;
         net_seed = 0;
-        //Network end
-	}
-	public void initMultiPlayer(boolean isServer) {
-        //Network
-        if(isServer) {
-            net.startServer();
-        }
-        else {
-            net.startClient("127.0.0.1");
-            Random rand = new Random();
-            net_seed = rand.nextInt();
-            net.sendSeed(net_seed);
-        }
-        //Network end
-		Field gameField1 = new Field(net_seed);
-		//Field gameField2 = new Field(666);
-		JLabel points1 = new JLabel(String.valueOf(gameField1.getScore()));
-        //JLabel points2 = new JLabel(String.valueOf(gameField2.getScore()));
-        JLabel points2 = new JLabel("0");
-		DrawArea drawarea1 = new DrawArea(gameField1);
-		//Network
-		DrawArea drawarea2 = new DrawArea(this);
-		//Network end
-        this.add(drawarea1);
-        this.add(drawarea2);
-        this.add(points1);
-        this.add(points2);
-        drawarea1.setPreferredSize(new Dimension(300,600));
-        drawarea2.setPreferredSize(new Dimension(300,600));
-        this.requestFocusInWindow();
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-            	System.out.println("multi");
-            	points1.setText(String.valueOf(gameField1.getScore()));
-            	//points2.setText(String.valueOf(gameField2.getScore()));
-
-                //Network
-                points2.setText(String.valueOf(net_score));
-                net.sendMatrix(gameField1.getMatrix());
-                net.sendScore(gameField1.getScore());
-                //Network end
-            }
-        }, 0, 100);
-        //Billentyű figyelés
-        this.requestFocusInWindow();
-        this.addKeyListener(new KeyListener() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-       
-            	
-                switch (e.getKeyCode()) {
-                    case (KeyEvent.VK_RIGHT):
-                        gameField1.shiftRight();   //shiftRight()
-                        break;
-                    case (KeyEvent.VK_LEFT):
-                        gameField1.shiftLeft();    //shiftLeft()
-                        break;
-                    case (KeyEvent.VK_UP):
-                        gameField1.rotateLeft();;  //rotateRight()
-                        break;
-                    case (KeyEvent.VK_DOWN):
-                        gameField1.drop();   //rotateLeft()
-                        break;
-                    case (KeyEvent.VK_ESCAPE):
-                    	FrameGUI.this.getContentPane().removeAll();
-                    	//initMainMenu();
-                        break;
-                }
-            }
-
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-            }
-        });
 	}
 
-	//Network
     public void setMatrix(Integer [][] net_matrix) {
 	    this.net_matrix = net_matrix;
     }
@@ -133,7 +42,7 @@ public class FrameGUI extends JFrame {
     public Integer[][] getMatrix() {
         return net_matrix;
     }
-    //Network end
+
     public void setActualFrame(int actualFrame) {
     	switch (actualFrame) {
             case 1:	SinglePlayer sp = new SinglePlayer(this);

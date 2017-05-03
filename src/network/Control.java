@@ -27,7 +27,7 @@ public class Control {
 		gui = g;
 	}
 
-	//Nem biztos hogy kell
+	//TODO: Nem biztos hogy kell
 	public FrameGUI getGUI() {
 		return this.gui;
 	}
