@@ -8,6 +8,8 @@ import graphics.FrameGUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
@@ -26,8 +28,10 @@ public class SinglePlayer {
         fGUI.add(drawarea);
         JLabel points = new JLabel("Pontszám: " + String.valueOf(gameField.getScore()));
         JLabel level = new JLabel("LvL: " + String.valueOf(gameField.getLevel()));
+        JButton exitButton = new JButton("Kilépés");
         fGUI.add(points);
         fGUI.add(level);
+        fGUI.add(exitButton);
         drawarea.setPreferredSize(new Dimension(10 * Dimensions.BLOCK_SIZE, 20 * Dimensions.BLOCK_SIZE));
         fGUI.requestFocusInWindow();
         fGUI.pack();
@@ -42,6 +46,14 @@ public class SinglePlayer {
             }
         }, 0, 20);
 
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fGUI.getContentPane().removeAll();
+                timer.cancel();
+                fGUI.setActualFrame(7);
+            }
+        });
         //Billentyű figyelés
         fGUI.addKeyListener(new KeyListener() {
             @Override

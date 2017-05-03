@@ -6,6 +6,8 @@ import graphics.FrameGUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Timer;
@@ -26,6 +28,7 @@ public class MultiPlayer {
         JLabel level1 = new JLabel("LvL: " + String.valueOf(gameField.getLevel()));
         JLabel points2 = new JLabel("Pontszám: " + "0");
         JLabel level2 = new JLabel("LvL: " + "0");
+        JButton exitButton = new JButton("Kilépés");
         DrawArea drawarea1 = new DrawArea(gameField);
         DrawArea drawarea2 = new DrawArea(fGUI);
 
@@ -35,6 +38,7 @@ public class MultiPlayer {
         fGUI.add(points2);
         fGUI.add(level1);
         fGUI.add(level2);
+        fGUI.add(exitButton);
         drawarea1.setPreferredSize(new Dimension(300, 600));
         drawarea2.setPreferredSize(new Dimension(300, 600));
         fGUI.requestFocusInWindow();
@@ -58,6 +62,15 @@ public class MultiPlayer {
                 fGUI.pack();
             }
         }, 0, 20);
+
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fGUI.getContentPane().removeAll();
+                timer.cancel();
+                fGUI.setActualFrame(7);
+            }
+        });
 
         //Billentyű figyelés
         fGUI.requestFocusInWindow();
