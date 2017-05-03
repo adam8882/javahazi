@@ -72,6 +72,7 @@ public class MultiPlayer {
                         fGUI.getContentPane().removeAll();
                         timer.cancel();
                         fGUI.setActualFrame(7);
+                        fGUI.getNet().disconnect();
                         fGUI.isConnected = false;
                         break;
                 }
