@@ -201,7 +201,7 @@ public class Field {
 
     public boolean isGameOver(){
         for (int i = 0; i < WIDTH; i++)
-            if(fixmatrix[i][0] != 0)
+            if(fixmatrix[i][1] != 0)
                 return true;
         return false;
     }
