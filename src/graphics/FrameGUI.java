@@ -91,7 +91,7 @@ public class FrameGUI extends JFrame {
     }
 
     public void serverDisconnected() {
-        net.disconnect();
+        isConnected = false;
         JOptionPane.showMessageDialog(null, "A szerver lecsatlakozott!");
     }
 
@@ -104,6 +104,7 @@ public class FrameGUI extends JFrame {
     }
 
     public void clientDisconnected() {
+        isConnected = false;
         JOptionPane.showMessageDialog(null, "Kliens lecsatlakozott.");
     }
 }

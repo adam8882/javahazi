@@ -1,30 +1,20 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package network;
 
-import java.awt.Point;
-
-/**
- *
- * @author Predi
- */
 abstract class Network {
 
-	protected Control ctrl;
+    protected Control ctrl;
 
-	Network(Control c) {
-		ctrl = c;
-	}
+    Network(Control c) {
+        ctrl = c;
+    }
 
-	abstract void connect(String ip);
+    abstract void connect(String ip);
 
-	abstract void disconnect();
+    abstract void disconnect();
 
-	abstract void sendMatrix(Integer[][] matrix);
+    abstract void sendMatrix(Integer[][] matrix);
 
-	abstract void sendScore(int score);
+    abstract void sendScore(int score);
 
-	abstract void sendSeed(int seed);
+    abstract void sendSeed(int seed);
 }

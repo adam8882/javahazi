@@ -57,8 +57,10 @@ public class MultiPlayer {
                 while (fGUI.getScore() > (500 + lvl2*lvl2*1000 - 1))
                     lvl2 += 1;
                 level2.setText("LvL: " + Integer.toString(lvl2));
-                fGUI.getNet().sendMatrix(gameField.getMatrix());
-                fGUI.getNet().sendScore(gameField.getScore());
+                if(fGUI.isConnected) {
+                    fGUI.getNet().sendMatrix(gameField.getMatrix());
+                    fGUI.getNet().sendScore(gameField.getScore());
+                }
 
                 fGUI.update(fGUI.getBufferStrategy().getDrawGraphics());
                 fGUI.getBufferStrategy().show();
