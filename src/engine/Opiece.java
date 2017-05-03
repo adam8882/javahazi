@@ -8,9 +8,9 @@ public class Opiece extends Piece {
         super();
         this.color = color;
         int[][] state_0 = {
+                {0, 1, 1, 0},
+                {0, 1, 1, 0},
                 {0, 0, 0, 0},
-                {0, 1, 1, 0},
-                {0, 1, 1, 0},
                 {0, 0, 0, 0}};
 
         v.add(0, state_0);
