@@ -210,6 +210,10 @@ public class Field {
         return score;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
     public int getNextPiece() {
         return nextpiece.getColor();
     }

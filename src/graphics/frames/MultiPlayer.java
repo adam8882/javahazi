@@ -22,8 +22,10 @@ public class MultiPlayer {
 
         Field gameField = new Field(fGUI.net_seed);
 
-        JLabel points1 = new JLabel(String.valueOf(gameField.getScore()));
-        JLabel points2 = new JLabel("0");
+        JLabel points1 = new JLabel("Pontszám: " + String.valueOf(gameField.getScore()));
+        JLabel level1 = new JLabel("LvL: " + String.valueOf(gameField.getLevel()));
+        JLabel points2 = new JLabel("Pontszám: " + "0");
+        JLabel level2 = new JLabel("LvL: " + "0");
         DrawArea drawarea1 = new DrawArea(gameField);
         DrawArea drawarea2 = new DrawArea(fGUI);
 
@@ -31,6 +33,8 @@ public class MultiPlayer {
         fGUI.add(drawarea2);
         fGUI.add(points1);
         fGUI.add(points2);
+        fGUI.add(level1);
+        fGUI.add(level2);
         drawarea1.setPreferredSize(new Dimension(300, 600));
         drawarea2.setPreferredSize(new Dimension(300, 600));
         fGUI.requestFocusInWindow();
@@ -39,8 +43,13 @@ public class MultiPlayer {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                points1.setText(String.valueOf(gameField.getScore()));
-                points2.setText(String.valueOf(fGUI.net_score));
+                points1.setText("Pontszám: " + String.valueOf(gameField.getScore()));
+                level1.setText("LvL: " + String.valueOf(gameField.getLevel()));
+                points2.setText("Pontszám: " + String.valueOf(fGUI.net_score));
+                int lvl2 = 0;
+                while (fGUI.net_score > (500 + lvl2*lvl2*1000 - 1))
+                    lvl2 += 1;
+                level2.setText("LvL: " + Integer.toString(lvl2));
                 fGUI.getNet().sendMatrix(gameField.getMatrix());
                 fGUI.getNet().sendScore(gameField.getScore());
 

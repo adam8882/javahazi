@@ -24,8 +24,10 @@ public class SinglePlayer {
         Field gameField = new Field(seed);
         DrawArea drawarea = new DrawArea(gameField);
         fGUI.add(drawarea);
-        JLabel points = new JLabel(String.valueOf(gameField.getScore()));
+        JLabel points = new JLabel("Pontszám: " + String.valueOf(gameField.getScore()));
+        JLabel level = new JLabel("LvL: " + String.valueOf(gameField.getLevel()));
         fGUI.add(points);
+        fGUI.add(level);
         drawarea.setPreferredSize(new Dimension(10 * Dimensions.BLOCK_SIZE, 20 * Dimensions.BLOCK_SIZE));
         fGUI.requestFocusInWindow();
         fGUI.pack();
@@ -35,7 +37,8 @@ public class SinglePlayer {
                 fGUI.update(fGUI.getBufferStrategy().getDrawGraphics());
                 //frame.pack();
                 fGUI.getBufferStrategy().show();
-                points.setText(String.valueOf(gameField.getScore()));
+                points.setText("Pontszám: " + String.valueOf(gameField.getScore()));
+                level.setText("LvL: " + String.valueOf(gameField.getLevel()));
             }
         }, 0, 20);
 
