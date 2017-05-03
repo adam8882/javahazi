@@ -83,6 +83,7 @@ public class FrameGUI extends JFrame {
     }
 
     public void serverDisconnected() {
+        net.disconnect();
         JOptionPane.showMessageDialog(null, "A szerver lecsatlakozott!");
     }
 
