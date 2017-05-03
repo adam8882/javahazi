@@ -76,7 +76,7 @@ public class Field {
         if (isPieceDown) {
             if (piece != null)
                 for (int i = 0; i < 4; i++) {
-                    fixmatrix[piece.getCoordinate(i).getX()][piece.getCoordinate(i).getY()] = piece.getColor(); //TODO java.lang.ArrayIndexOutOfBoundsException: 12
+                    fixmatrix[piece.getCoordinate(i).getX()][piece.getCoordinate(i).getY()] = piece.getColor();
                 }
             findRow();
             piece = nextpiece;
@@ -110,7 +110,7 @@ public class Field {
                     if (piece.getCoordinate(j).getY() < (HEIGHT - 1) &&
                             piece.getCoordinate(j).getY() + 1 >= 0 &&
                             piece.getCoordinate(j).getX() >= 0)
-                        if (fixmatrix[piece.getCoordinate(j).getX()][piece.getCoordinate(j).getY() + 1] == 0) //TODO java.lang.ArrayIndexOutOfBoundsException: 12 for every call of drop()
+                        if (fixmatrix[piece.getCoordinate(j).getX()][piece.getCoordinate(j).getY() + 1] == 0)
                             ;
                         else
                             isPieceDown = true;
@@ -123,7 +123,7 @@ public class Field {
         }
         if (piece != null)
             for (int i = 0; i < 4; i++) {
-                fixmatrix[piece.getCoordinate(i).getX()][piece.getCoordinate(i).getY()] = piece.getColor(); //TODO java.lang.ArrayIndexOutOfBoundsException: -3
+                fixmatrix[piece.getCoordinate(i).getX()][piece.getCoordinate(i).getY()] = piece.getColor();
             }
         findRow();
         generateMatrix();
