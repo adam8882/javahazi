@@ -5,6 +5,7 @@ import java.util.TimerTask;
 /**
  * Created by Adam on 2017. 02. 26..
  */
+
 public class Field {
     private Integer matrix[][];
     private Integer fixmatrix[][];
@@ -40,10 +41,13 @@ public class Field {
                 generateMatrix();
                 checkIsPieceDown();
             }
-        }, 1000, 1000);
+        }, 0, 1000);
     }
 
-    public void setDropTime(int t) {
+    private void setDropTime(int t) {
+        timer.cancel();
+        timer.purge();
+        timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -52,7 +56,7 @@ public class Field {
                 generateMatrix();
                 checkIsPieceDown();
             }
-        }, t, t);
+        }, 0, t);
     }
 
     private void checkIsPieceDown() {
@@ -72,7 +76,7 @@ public class Field {
         if (isPieceDown) {
             if (piece != null)
                 for (int i = 0; i < 4; i++) {
-                    fixmatrix[piece.getCoordinate(i).getX()][piece.getCoordinate(i).getY()] = piece.getColor();
+                    fixmatrix[piece.getCoordinate(i).getX()][piece.getCoordinate(i).getY()] = piece.getColor(); //TODO java.lang.ArrayIndexOutOfBoundsException: 12
                 }
             findRow();
             piece = nextpiece;
@@ -92,7 +96,7 @@ public class Field {
                 matrix[w][h] = 0;
         for (int h = 0; h < HEIGHT; h++)
             for (int w = 0; w < WIDTH; w++)
-                matrix[w][h] = new Integer(fixmatrix[w][h]); //TODO reference copy?
+                matrix[w][h] = new Integer(fixmatrix[w][h]);
         for (int i = 0; i < 4; i++) {
 
             matrix[piece.getCoordinate(i).getX()][piece.getCoordinate(i).getY()] = piece.getColor();
@@ -106,7 +110,7 @@ public class Field {
                     if (piece.getCoordinate(j).getY() < (HEIGHT - 1) &&
                             piece.getCoordinate(j).getY() + 1 >= 0 &&
                             piece.getCoordinate(j).getX() >= 0)
-                        if (fixmatrix[piece.getCoordinate(j).getX()][piece.getCoordinate(j).getY() + 1] == 0)
+                        if (fixmatrix[piece.getCoordinate(j).getX()][piece.getCoordinate(j).getY() + 1] == 0) //TODO java.lang.ArrayIndexOutOfBoundsException: 12 for every call of drop()
                             ;
                         else
                             isPieceDown = true;
@@ -119,7 +123,7 @@ public class Field {
         }
         if (piece != null)
             for (int i = 0; i < 4; i++) {
-                fixmatrix[piece.getCoordinate(i).getX()][piece.getCoordinate(i).getY()] = piece.getColor();
+                fixmatrix[piece.getCoordinate(i).getX()][piece.getCoordinate(i).getY()] = piece.getColor(); //TODO java.lang.ArrayIndexOutOfBoundsException: -3
             }
         findRow();
         generateMatrix();
@@ -178,12 +182,20 @@ public class Field {
             case 3: score += 300 *(level+1); break;
             case 4: score += 1200*(level+1); break;
         }
+        while (score > (500 + level*level*1000 - 1)) {
+            level += 1;
+            int droptime = 1000-level*100;
+            if(droptime > 100)
+                setDropTime(droptime);
+            else
+                setDropTime(100);
+        }
     }
 
     private void clearRow(int row) {
         for (; row > 0; row--)
             for (int i = 0; i < WIDTH; i++) {
-                fixmatrix[i][row]=fixmatrix[i][row-1]; //TODO: referencia?
+                fixmatrix[i][row]=fixmatrix[i][row-1];
             }
     }
 
@@ -196,10 +208,6 @@ public class Field {
 
     public int getScore() {
         return score;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
     }
 
     public int getNextPiece() {
