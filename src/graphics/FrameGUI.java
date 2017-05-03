@@ -13,12 +13,13 @@ public class FrameGUI extends JFrame {
     int net_seed;
     public boolean isConnected;
 
-    public FrameGUI(Control net) {
+    public FrameGUI() {
+        this.net=new Control();
+        this.net.setGUI(this);
         new MainMenu(this);
         this.setResizable(false);
 
         isConnected = false;
-        this.net = net;
         net_matrix = new Integer[Field.WIDTH][Field.HEIGHT];
         for (int h = 0; h < Field.HEIGHT; h++)
             for (int w = 0; w < Field.WIDTH; w++)
@@ -28,6 +29,7 @@ public class FrameGUI extends JFrame {
     }
 
     public void setActualFrame(int actualFrame) {
+        this.getContentPane().removeAll();
         switch (actualFrame) {
             case 1:
                 new SinglePlayer(this);
@@ -91,8 +93,16 @@ public class FrameGUI extends JFrame {
     }
 
     public void serverDisconnected() {
+        net.disconnect();
         isConnected = false;
+        net_matrix = new Integer[Field.WIDTH][Field.HEIGHT];
+        for (int h = 0; h < Field.HEIGHT; h++)
+            for (int w = 0; w < Field.WIDTH; w++)
+                net_matrix[w][h] = 0;
+        net_score = 0;
+        net_seed = 0;
         JOptionPane.showMessageDialog(null, "A szerver lecsatlakozott!");
+        setActualFrame(7);
     }
 
     public void serverNotAvailable() {
@@ -104,7 +114,15 @@ public class FrameGUI extends JFrame {
     }
 
     public void clientDisconnected() {
+        net.disconnect();
         isConnected = false;
+        net_matrix = new Integer[Field.WIDTH][Field.HEIGHT];
+        for (int h = 0; h < Field.HEIGHT; h++)
+            for (int w = 0; w < Field.WIDTH; w++)
+                net_matrix[w][h] = 0;
+        net_score = 0;
+        net_seed = 0;
         JOptionPane.showMessageDialog(null, "Kliens lecsatlakozott.");
+        setActualFrame(7);
     }
 }

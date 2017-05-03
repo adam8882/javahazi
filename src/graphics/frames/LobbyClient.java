@@ -79,7 +79,6 @@ public class LobbyClient {
 						public void run() {
 							if(fGUI.getSeed() != 0) {
 								timer.cancel();
-								fGUI.getContentPane().removeAll();
 								fGUI.setActualFrame(8);
 							}
 						}
@@ -90,7 +89,6 @@ public class LobbyClient {
 
         backButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-            	fGUI.getContentPane().removeAll();
             	fGUI.setActualFrame(7);
             }		
         });

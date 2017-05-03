@@ -3,6 +3,7 @@ package graphics.frames;
 import engine.Field;
 import graphics.DrawArea;
 import graphics.FrameGUI;
+import network.Control;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +23,6 @@ public class MultiPlayer {
     public MultiPlayer(FrameGUI fGUI) {
         fGUI.setLayout(new GridLayout(2, 1));
         fGUI.getNet().sendSeed(fGUI.getSeed());
-
         Field gameField = new Field(fGUI.getSeed());
 
         JLabel points1 = new JLabel("Pontszám: " + String.valueOf(gameField.getScore()));
@@ -83,11 +83,11 @@ public class MultiPlayer {
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                fGUI.getContentPane().removeAll();
                 timer.cancel();
-                fGUI.setActualFrame(7);
                 fGUI.getNet().disconnect();
                 fGUI.isConnected = false;
+                fGUI.getContentPane().removeAll();
+                fGUI.setActualFrame(7);
             }
         });
 
@@ -116,11 +116,11 @@ public class MultiPlayer {
                         gameField.drop();
                         break;
                     case (KeyEvent.VK_ESCAPE):
-                        fGUI.getContentPane().removeAll();
                         timer.cancel();
-                        fGUI.setActualFrame(7);
                         fGUI.getNet().disconnect();
                         fGUI.isConnected = false;
+                        fGUI.getContentPane().removeAll();
+                        fGUI.setActualFrame(7);
                         break;
                 }
             }

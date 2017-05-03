@@ -94,7 +94,6 @@ public class LobbyServer {
 							Random rand = new Random();
 							int net_seed = rand.nextInt(10000)+1;
 							fGUI.setNetSeed(net_seed);
-							fGUI.getContentPane().removeAll();
 		            		fGUI.setActualFrame(8);
 		            	}
 		            }
@@ -104,7 +103,6 @@ public class LobbyServer {
         
         backButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-            	fGUI.getContentPane().removeAll();
             	fGUI.setActualFrame(7);
             }
         });

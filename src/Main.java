@@ -6,10 +6,7 @@ import java.awt.*;
 
 public class Main {
     public static void main(String[] args) throws AWTException {
-        Control c = new Control();
-        FrameGUI fGUI = new FrameGUI(c);
-
-        c.setGUI(fGUI);
+        FrameGUI fGUI = new FrameGUI();
         fGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fGUI.setVisible(true);
         fGUI.createBufferStrategy(2);
