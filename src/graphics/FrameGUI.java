@@ -84,7 +84,10 @@ public class FrameGUI extends JFrame {
 
     public void serverDisconnected() {
         net.disconnect();
+        isConnected=false;
         JOptionPane.showMessageDialog(null, "A szerver lecsatlakozott!");
+        this.getContentPane().removeAll();
+        setActualFrame(7);
     }
 
     public void serverNotAvailable() {
@@ -96,6 +99,10 @@ public class FrameGUI extends JFrame {
     }
 
     public void clientDisconnected() {
+        net.disconnect();
+        isConnected=false;
         JOptionPane.showMessageDialog(null, "Kliens lecsatlakozott.");
+        this.getContentPane().removeAll();
+        setActualFrame(7);
     }
 }
