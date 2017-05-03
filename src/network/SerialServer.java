@@ -1,6 +1,5 @@
 package network;
 
-import java.awt.Point;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -141,8 +140,7 @@ public class SerialServer extends Network {
             if (serverSocket != null)
                 serverSocket.close();
         } catch (IOException ex) {
-            Logger.getLogger(SerialServer.class.getName()).log(Level.SEVERE,
-                    null, ex);
+            System.err.println("Hiba a kapcsolat lezárásakor.");
         }
     }
 }

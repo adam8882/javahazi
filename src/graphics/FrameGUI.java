@@ -9,8 +9,8 @@ import javax.swing.*;
 public class FrameGUI extends JFrame {
     Control net;
     Integer[][] net_matrix;
-    public int net_score;
-    public int net_seed;
+    int net_score;
+    int net_seed;
     public boolean isConnected;
 
     public FrameGUI(Control net) {
@@ -62,6 +62,14 @@ public class FrameGUI extends JFrame {
         this.net_score = net_score;
     }
 
+    public int getScore() {
+        return net_score;
+    }
+
+    public int getSeed() {
+        return net_seed;
+    }
+
     public void setNetSeed(int seed) {
         this.net_seed = seed;
     }
@@ -83,11 +91,8 @@ public class FrameGUI extends JFrame {
     }
 
     public void serverDisconnected() {
-        net.disconnect();
-        isConnected=false;
+        isConnected = false;
         JOptionPane.showMessageDialog(null, "A szerver lecsatlakozott!");
-        this.getContentPane().removeAll();
-        setActualFrame(7);
     }
 
     public void serverNotAvailable() {
@@ -99,10 +104,7 @@ public class FrameGUI extends JFrame {
     }
 
     public void clientDisconnected() {
-        net.disconnect();
-        isConnected=false;
+        isConnected = false;
         JOptionPane.showMessageDialog(null, "Kliens lecsatlakozott.");
-        this.getContentPane().removeAll();
-        setActualFrame(7);
     }
 }

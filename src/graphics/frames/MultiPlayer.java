@@ -6,6 +6,8 @@ import graphics.FrameGUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Timer;
@@ -16,25 +18,30 @@ import java.util.TimerTask;
  */
 
 public class MultiPlayer {
+    boolean isGameOver = false;
     public MultiPlayer(FrameGUI fGUI) {
         fGUI.setLayout(new GridLayout(2, 1));
-        fGUI.getNet().sendSeed(fGUI.net_seed);
+        fGUI.getNet().sendSeed(fGUI.getSeed());
 
-        Field gameField = new Field(fGUI.net_seed);
+        Field gameField = new Field(fGUI.getSeed());
 
         JLabel points1 = new JLabel("Pontszám: " + String.valueOf(gameField.getScore()));
         JLabel level1 = new JLabel("LvL: " + String.valueOf(gameField.getLevel()));
         JLabel points2 = new JLabel("Pontszám: " + "0");
         JLabel level2 = new JLabel("LvL: " + "0");
+        JButton exitButton = new JButton("Kilépés");
         DrawArea drawarea1 = new DrawArea(gameField);
         DrawArea drawarea2 = new DrawArea(fGUI);
+        JPanel panel = new JPanel();
+        fGUI.add(panel);
 
-        fGUI.add(drawarea1);
-        fGUI.add(drawarea2);
-        fGUI.add(points1);
-        fGUI.add(points2);
-        fGUI.add(level1);
-        fGUI.add(level2);
+        panel.add(drawarea1);
+        panel.add(drawarea2);
+        panel.add(points1);
+        panel.add(points2);
+        panel.add(level1);
+        panel.add(level2);
+        panel.add(exitButton);
         drawarea1.setPreferredSize(new Dimension(300, 600));
         drawarea2.setPreferredSize(new Dimension(300, 600));
         fGUI.requestFocusInWindow();
@@ -45,19 +52,44 @@ public class MultiPlayer {
             public void run() {
                 points1.setText("Pontszám: " + String.valueOf(gameField.getScore()));
                 level1.setText("LvL: " + String.valueOf(gameField.getLevel()));
-                points2.setText("Pontszám: " + String.valueOf(fGUI.net_score));
+                points2.setText("Pontszám: " + String.valueOf(fGUI.getScore()));
                 int lvl2 = 0;
-                while (fGUI.net_score > (500 + lvl2*lvl2*1000 - 1))
+                while (fGUI.getScore() > (500 + lvl2*lvl2*1000 - 1))
                     lvl2 += 1;
                 level2.setText("LvL: " + Integer.toString(lvl2));
-                fGUI.getNet().sendMatrix(gameField.getMatrix());
-                fGUI.getNet().sendScore(gameField.getScore());
+                if(fGUI.isConnected) {
+                    fGUI.getNet().sendMatrix(gameField.getMatrix());
+                    fGUI.getNet().sendScore(gameField.getScore());
+                }
 
                 fGUI.update(fGUI.getBufferStrategy().getDrawGraphics());
                 fGUI.getBufferStrategy().show();
                 fGUI.pack();
+                if (!isGameOver && gameField.getMatrix()[0][0] == 9 && fGUI.getMatrix()[0][0] == 9) {
+                    if(gameField.getScore() > fGUI.getScore())
+                        JOptionPane.showMessageDialog(null, "Gratulálok! Nyertél!");
+                    else if (gameField.getScore() == fGUI.getScore())
+                        JOptionPane.showMessageDialog(null, "Döntetlen!");
+                    else
+                        JOptionPane.showMessageDialog(null, "Vesztettél!");
+                    isGameOver = true;
+                }
+
             }
         }, 0, 20);
+
+
+
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fGUI.getContentPane().removeAll();
+                timer.cancel();
+                fGUI.setActualFrame(7);
+                fGUI.getNet().disconnect();
+                fGUI.isConnected = false;
+            }
+        });
 
         //Billentyű figyelés
         fGUI.requestFocusInWindow();
