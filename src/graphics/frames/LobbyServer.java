@@ -94,6 +94,7 @@ public class LobbyServer {
 							Random rand = new Random();
 							int net_seed = rand.nextInt(10000)+1;
 							fGUI.setNetSeed(net_seed);
+							fGUI.getNet().sendSeed(net_seed);
 		            		fGUI.setActualFrame(8);
 		            	}
 		            }

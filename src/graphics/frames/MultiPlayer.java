@@ -22,7 +22,6 @@ public class MultiPlayer {
     boolean isGameOver = false;
     public MultiPlayer(FrameGUI fGUI) {
         fGUI.setLayout(new GridLayout(2, 1));
-        fGUI.getNet().sendSeed(fGUI.getSeed());
         Field gameField = new Field(fGUI.getSeed());
 
         JLabel points1 = new JLabel("Pontszám: " + String.valueOf(gameField.getScore()));
