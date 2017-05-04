@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 public class Piece {
-	private static int blockSize = Dimensions.BLOCK_SIZE;
-	
 	private Color color_L = new Color(1,1,1);
 	private Color color_B;
 	private Color color_R;
@@ -17,12 +15,13 @@ public class Piece {
 	
 	private int offsetX;
 	private int offsetY;
-	
+	private int blockSize;
 	private int blockType;
 	
-	public Piece(int oX, int oY, int bT) {
+	public Piece(int oX, int oY, int bT, int bS) {
 		this.offsetX=oX;
 		this.offsetY=oY;
+		this.blockSize=bS;
 		this.blockType=bT;
 		this.polyCoords = new ArrayList();
 		this.colors = new ArrayList();
@@ -85,25 +84,25 @@ public class Piece {
 		return colors;
 	}
 	public void setPolyCoords () {
-	    //Bal oldali polygon koordin�t�k
-	    int xl[] = {-blockSize/2+offsetX,-blockSize/4+offsetX,-blockSize/4+offsetX,-blockSize/2+offsetX};
-	    int yl[] = {blockSize/2+offsetY,blockSize/4+offsetY,-blockSize/4+offsetY,-blockSize/2+offsetY};
-	    
-	    //Lenti polygon koordin�t�k
-	    int xb[] = {-blockSize/2+offsetX,-blockSize/4+offsetX,blockSize/4+offsetX,blockSize/2+offsetX};
-	    int yb[] = {blockSize/2+offsetY,blockSize/4+offsetY,blockSize/4+offsetY,blockSize/2+offsetY};
-	    
-	    //Jobb oldali polygon koordin�t�k
-	    int xr[] = {blockSize/2+offsetX,blockSize/4+offsetX,blockSize/4+offsetX,blockSize/2+offsetX};
-	    int yr[] = {blockSize/2+offsetY,blockSize/4+offsetY,-blockSize/4+offsetY,-blockSize/2+offsetY};
-	    
-	    //Fenti polygon koordin�t�k
-	    int xt[] = {blockSize/2+offsetX,blockSize/4+offsetX,-blockSize/4+offsetX,-blockSize/2+offsetX};
-	    int yt[] = {-blockSize/2+offsetY,-blockSize/4+offsetY,-blockSize/4+offsetY,-blockSize/2+offsetY};
-	    
-	    //K�z�ps� polygon koordin�t�k
-	    int xc[] = {blockSize/4+offsetX,blockSize/4+offsetX,-blockSize/4+offsetX,-blockSize/4+offsetX};
-	    int yc[] = {blockSize/4+offsetY,-blockSize/4+offsetY,-blockSize/4+offsetY,blockSize/4+offsetY};
+		//Bal oldali polygon koordin�t�k
+		int xl[] = {-this.blockSize/2+offsetX,-this.blockSize/4+offsetX,-this.blockSize/4+offsetX,-this.blockSize/2+offsetX};
+		int yl[] = {this.blockSize/2+offsetY,this.blockSize/4+offsetY,-this.blockSize/4+offsetY,-this.blockSize/2+offsetY};
+
+		//Lenti polygon koordin�t�k
+		int xb[] = {-this.blockSize/2+offsetX,-this.blockSize/4+offsetX,this.blockSize/4+offsetX,this.blockSize/2+offsetX};
+		int yb[] = {this.blockSize/2+offsetY,this.blockSize/4+offsetY,this.blockSize/4+offsetY,this.blockSize/2+offsetY};
+
+		//Jobb oldali polygon koordin�t�k
+		int xr[] = {this.blockSize/2+offsetX,this.blockSize/4+offsetX,this.blockSize/4+offsetX,this.blockSize/2+offsetX};
+		int yr[] = {this.blockSize/2+offsetY,this.blockSize/4+offsetY,-this.blockSize/4+offsetY,-this.blockSize/2+offsetY};
+
+		//Fenti polygon koordin�t�k
+		int xt[] = {this.blockSize/2+offsetX,this.blockSize/4+offsetX,-this.blockSize/4+offsetX,-this.blockSize/2+offsetX};
+		int yt[] = {-this.blockSize/2+offsetY,-this.blockSize/4+offsetY,-this.blockSize/4+offsetY,-this.blockSize/2+offsetY};
+
+		//K�z�ps� polygon koordin�t�k
+		int xc[] = {this.blockSize/4+offsetX,this.blockSize/4+offsetX,-this.blockSize/4+offsetX,-this.blockSize/4+offsetX};
+		int yc[] = {this.blockSize/4+offsetY,-this.blockSize/4+offsetY,-this.blockSize/4+offsetY,this.blockSize/4+offsetY};
 	    
 	    this.polyCoords.add(xl);
 	    this.polyCoords.add(yl);

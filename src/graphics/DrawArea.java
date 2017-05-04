@@ -50,7 +50,7 @@ public class DrawArea extends JPanel {
             for (int j = 0; j < playGroundHeight; j++) {
                 type = matrix[i][j];
                 if (type != 0) {
-                    Piece p = new Piece(Dimensions.BLOCK_SIZE / 2 + Dimensions.BLOCK_SIZE * i, Dimensions.BLOCK_SIZE / 2 + Dimensions.BLOCK_SIZE * j, type);
+                    Piece p = new Piece(Dimensions.BLOCK_SIZE / 2 + Dimensions.BLOCK_SIZE * i, Dimensions.BLOCK_SIZE / 2 + Dimensions.BLOCK_SIZE * j, type,Dimensions.BLOCK_SIZE);
                     drawPiece(p, g);
                 }
             }
