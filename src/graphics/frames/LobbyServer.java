@@ -91,6 +91,7 @@ public class LobbyServer {
 		            public void run() {
 		            	if(fGUI.isConnected()) {
 							timer.cancel();
+							timer.purge();
 							Random rand = new Random();
 							int net_seed = rand.nextInt(10000)+1;
 							fGUI.setNetSeed(net_seed);

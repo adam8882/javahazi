@@ -79,6 +79,7 @@ public class LobbyClient {
 						public void run() {
 							if(fGUI.getSeed() != 0) {
 								timer.cancel();
+								timer.purge();
 								fGUI.setActualFrame(8);
 							}
 						}

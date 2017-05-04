@@ -83,6 +83,7 @@ public class MultiPlayer {
             @Override
             public void actionPerformed(ActionEvent e) {
                 timer.cancel();
+                timer.purge();
                 fGUI.getNet().disconnect();
                 fGUI.isConnected = false;
                 fGUI.getContentPane().removeAll();
