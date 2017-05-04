@@ -93,20 +93,20 @@ public class FrameGUI extends JFrame {
     }
 
     public void serverDisconnected() {
-        net.disconnect();
         isConnected = false;
+        net.disconnect();
         net_matrix = new Integer[Field.WIDTH][Field.HEIGHT];
         for (int h = 0; h < Field.HEIGHT; h++)
             for (int w = 0; w < Field.WIDTH; w++)
                 net_matrix[w][h] = 0;
         net_score = 0;
         net_seed = 0;
-        JOptionPane.showMessageDialog(null, "A szerver lecsatlakozott!");
+        //JOptionPane.showMessageDialog(null, "A szerver lecsatlakozott!");
         setActualFrame(7);
     }
 
     public void serverNotAvailable() {
-        JOptionPane.showMessageDialog(null, "A szerver nem elérhető!");
+        //JOptionPane.showMessageDialog(null, "A szerver nem elérhető!");
     }
 
     public void clientConnected() {
@@ -114,15 +114,15 @@ public class FrameGUI extends JFrame {
     }
 
     public void clientDisconnected() {
-        net.disconnect();
         isConnected = false;
+        net.disconnect();
         net_matrix = new Integer[Field.WIDTH][Field.HEIGHT];
         for (int h = 0; h < Field.HEIGHT; h++)
             for (int w = 0; w < Field.WIDTH; w++)
                 net_matrix[w][h] = 0;
         net_score = 0;
         net_seed = 0;
-        JOptionPane.showMessageDialog(null, "Kliens lecsatlakozott.");
+        //JOptionPane.showMessageDialog(null, "Kliens lecsatlakozott.");
         setActualFrame(7);
     }
 }
