@@ -81,7 +81,8 @@ public class LobbyClient {
                     public void run() {
                         if (fGUI.isConnected) {
                             if (fGUI.getSeed() != 0) {
-                                fGUI.killThemAll();
+                                timer.cancel();
+                                timer.purge();
                                 String net_name = nameField.getText();
                                 fGUI.getNet().sendName(net_name);
                                 fGUI.setActualFrame(8);

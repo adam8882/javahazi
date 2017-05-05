@@ -91,7 +91,8 @@ public class LobbyServer {
 		            @Override
 		            public void run() {
 		            	if(fGUI.isConnected()) {
-							fGUI.killThemAll();
+							timer.cancel();
+							timer.purge();
 							String net_name = nameField.getText();
 							Random rand = new Random();
 							int net_seed = rand.nextInt(10000)+1;
@@ -108,7 +109,8 @@ public class LobbyServer {
         backButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
 				fGUI.getNet().disconnect();
-            	fGUI.killThemAll();
+            	timer.cancel();
+            	timer.purge();
         		fGUI.setActualFrame(7);
             }
         });

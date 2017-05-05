@@ -180,6 +180,7 @@ public class MultiPlayer {
                         break;
                     case (KeyEvent.VK_ESCAPE):
                         timer.cancel();
+                        timer.purge();
                         fGUI.getNet().disconnect();
                         fGUI.isConnected = false;
                         fGUI.getContentPane().removeAll();
