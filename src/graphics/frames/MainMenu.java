@@ -94,6 +94,25 @@ public class MainMenu {
 				fGUI.setActualFrame(1);
 			}
 		});
+
+		p2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				fGUI.getContentPane().removeAll();
+				fGUI.setLayout(new GridLayout(1, 1));
+				fGUI.setActualFrame(2);
+			}
+		});
+
+		p3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				fGUI.getContentPane().removeAll();
+				fGUI.setLayout(new GridLayout(1, 1));
+				fGUI.setActualFrame(3);
+			}
+		});
+
 		/*
 		JButton singlePlayerButton = new JButton("Single player");
 		JButton multiPlayerServerButton = new JButton("Multi player server");
