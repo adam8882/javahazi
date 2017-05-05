@@ -28,19 +28,20 @@ public class SinglePlayer {
         int seed = rand.nextInt(1000000);
         Field gameField = new Field(seed);
         DrawArea drawarea = new DrawArea(gameField);
+        drawarea.setBlockSize(Dimensions.BLOCK_SIZE_MAIN);
 
         //Points label
-        JLabel points = new JLabel("Points: " + String.valueOf(gameField.getScore()));
+        JLabel points = new JLabel();
         points.setFont(new Font("Serif", Font.PLAIN, 30));
         points.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         //Level label
-        JLabel level = new JLabel("Level: " + String.valueOf(gameField.getLevel()));
+        JLabel level = new JLabel();
         level.setFont(new Font("Serif", Font.PLAIN, 30));
         level.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         //Back button
-        JButton exitButton = new JButton("Back");
+        JButton exitButton = new JButton("Exit");
         exitButton.setFont(new Font("Serif", Font.PLAIN, 30));
         exitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -58,7 +59,7 @@ public class SinglePlayer {
         fGUI.add(drawarea);
         fGUI.add(resultsPanel);
 
-        drawarea.setPreferredSize(new Dimension(10 * Dimensions.BLOCK_SIZE + 1, 20 * Dimensions.BLOCK_SIZE + 1));
+        drawarea.setPreferredSize(new Dimension(10 * Dimensions.BLOCK_SIZE_MAIN + 1, 20 * Dimensions.BLOCK_SIZE_MAIN + 1));
         resultsPanel.setPreferredSize((new Dimension(200,600)));
 
         fGUI.requestFocusInWindow();

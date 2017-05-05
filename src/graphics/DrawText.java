@@ -13,22 +13,10 @@ public class DrawText extends JPanel {
     int type;
 
     public DrawText(ArrayList<Object[][]> matrix) {
-        this.blockSize = Dimensions.BLOCK_SIZE_2;
+        this.blockSize = Dimensions.BLOCK_SIZE_MENU;
         this.matrix = mergeArray(matrix);
     }
     public Object[][] mergeArray(ArrayList<Object[][]> text) {
-        /*System.out.println(text.get(0).length);
-        System.out.println(text.get(0)[1].length);
-        System.out.println(text.get(0)[5][4]);
-        for (int i = 1; i < text.size(); i++) {
-            Object[][] newt = new Object[text.get(i)[0].length-1][text.get(i).length-1];
-            for (int j = 1; j < text.get(i).length; j++) {
-                for (int k = 1; k < text.get(i)[0].length; k++) {
-                    newt[k][j]=text.get(i)[j][k];
-                }
-            }
-            text.set(i,newt);
-        }*/
         for(int k=0;k<text.size();k++) {
             Object[][] m = text.get(k);
             Object[][] temp = new Object[m[0].length][m.length];
@@ -50,17 +38,11 @@ public class DrawText extends JPanel {
     }
 
     public void paint(Graphics g) {
-        /*for (int i = 0; i < getMatrix()[0].length; i++) {
-            for (int j = 0; j < getMatrix().length; j++) {
-                g.setColor(Colors.EMPTY_PIECE_BORDER);
-                g.drawRect(i * blockSize, j * blockSize, blockSize, blockSize);
-            }
-        }*/
         for (int i = 0; i < getMatrix().length; i++) {
             for (int j = 0; j < getMatrix()[0].length; j++) {
                 type = (int)getMatrix()[i][j];
                 if (type != 0) {
-                    Piece p = new Piece(getBlockSize() / 2 + getBlockSize() * i + (600-getMatrix().length*10)/2, getBlockSize() / 2 + getBlockSize() * j+30, type,Dimensions.BLOCK_SIZE_2);
+                    Piece p = new Piece(getBlockSize() / 2 + getBlockSize() * i + (600-getMatrix().length*10)/2, getBlockSize() / 2 + getBlockSize() * j+30, type,getBlockSize());
                     drawPiece(p, g);
                 }
             }

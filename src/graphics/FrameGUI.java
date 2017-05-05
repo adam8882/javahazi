@@ -23,8 +23,8 @@ public class FrameGUI extends JFrame {
         this.net=new Control();
         this.net.setGUI(this);
         new MainMenu(this);
+        this.setTitle("Main Menu");
         this.setResizable(false);
-
         isConnected = false;
         net_matrix = new Integer[Field.WIDTH][Field.HEIGHT];
         for (int h = 0; h < Field.HEIGHT; h++)
@@ -39,13 +39,16 @@ public class FrameGUI extends JFrame {
         killThemAll();
         switch (actualFrame) {
             case 1:
+                this.setTitle("Singleplayer");
                 new SinglePlayer(this);
                 break;
             case 2:
+                this.setTitle("Lobby (Server)");
                 this.setLayout(new GridLayout(2, 1));
                 lobby_s = new LobbyServer(this);
                 break;
             case 3:
+                this.setTitle("Lobby (Client)");
                 this.setLayout(new GridLayout(2, 1));
                 lobby_c = new LobbyClient(this);
                 break;
@@ -56,9 +59,11 @@ public class FrameGUI extends JFrame {
             case 6:
                 break;
             case 7:
+                this.setTitle("Main Menu");
                 new MainMenu(this);
                 break;
             case 8:
+                this.setTitle("Multiplayer");
                 multi = new MultiPlayer(this);
                 break;
 
@@ -125,10 +130,6 @@ public class FrameGUI extends JFrame {
 
     public void serverNotAvailable() {
         JOptionPane.showMessageDialog(null, "A szerver nem elérhető!");
-    }
-
-    public void clientConnected() {
-        //JOptionPane.showMessageDialog(null, "Kliens csatlakozott.");
     }
 
     public void clientDisconnected() {

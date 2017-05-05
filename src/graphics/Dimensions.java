@@ -1,8 +1,7 @@
 package graphics;
 
 public class Dimensions {
-	//public static final int BLOCK_SIZE = 30;
-	public static final int BLOCK_SIZE = 30;
-	public static final int BLOCK_SIZE_2 = 10;
-	public static final int BLOCK_SIZE_3 = 20;
+	public static final int BLOCK_SIZE_MAIN = 30;
+	public static final int BLOCK_SIZE_SEC = 20;
+	public static final int BLOCK_SIZE_MENU = 10;
 }

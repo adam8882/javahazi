@@ -6,11 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import graphics.*;
 
@@ -18,8 +14,6 @@ public class LobbyClient {
 
     Timer timer;
     public LobbyClient(FrameGUI fGUI) {
-        fGUI.setTitle("Multiplayer client lobby");
-
         JPanel labelPanel = new JPanel(new GridLayout(2, 1));
         JPanel fieldPanel = new JPanel(new GridLayout(2, 1));
         JPanel p1 = new JPanel(new GridLayout(1, 2));
@@ -69,7 +63,13 @@ public class LobbyClient {
 
         conButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                fGUI.getNet().startClient("localhost");
+                String ip = ipField.getText();
+                if(ip!=null) {
+                    fGUI.getNet().startClient(ip);
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Üres IP mező!");
+                }
                 if(timer != null) {
                     timer.cancel();
                     timer.purge();

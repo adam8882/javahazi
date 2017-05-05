@@ -22,7 +22,6 @@ public class LobbyServer {
 	Timer timer;
 
 	public LobbyServer(FrameGUI fGUI) {
-		fGUI.setTitle("Multiplayer server lobby");
 		String ipAdress = "";
     	try {
     		ipAdress = InetAddress.getLocalHost().getHostAddress();

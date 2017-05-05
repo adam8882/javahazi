@@ -11,18 +11,14 @@ public class DrawArea extends JPanel {
     private int playGroundWidth;
     private int playGroundHeight;
     private int blockSize;
-
     private Integer[][] matrix;
-    int type;
     private FrameGUI gui;
 
     public DrawArea(Field gF) {
         super();
         this.gameField = gF;
-
         this.playGroundWidth = gF.WIDTH;
         this.playGroundHeight = gF.HEIGHT;
-        this.blockSize = Dimensions.BLOCK_SIZE;
     }
 
     public DrawArea(FrameGUI gui) {
@@ -32,7 +28,7 @@ public class DrawArea extends JPanel {
 
         playGroundWidth = Field.WIDTH;
         playGroundHeight = Field.HEIGHT;
-        blockSize = Dimensions.BLOCK_SIZE;
+        blockSize = Dimensions.BLOCK_SIZE_MAIN;
     }
 
     public void paint(Graphics g) {
@@ -48,9 +44,8 @@ public class DrawArea extends JPanel {
             matrix = gui.getMatrix();
         for (int i = 0; i < playGroundWidth; i++) {
             for (int j = 0; j < playGroundHeight; j++) {
-                type = matrix[i][j];
-                if (type != 0) {
-                    Piece p = new Piece(this.blockSize / 2 + this.blockSize * i, this.blockSize / 2 + this.blockSize * j, type,this.blockSize);
+                if (matrix[i][j] != 0) {
+                    Piece p = new Piece(this.blockSize / 2 + this.blockSize * i, this.blockSize / 2 + this.blockSize * j, matrix[i][j],this.blockSize);
                     drawPiece(p, g);
                 }
             }

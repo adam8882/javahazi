@@ -29,7 +29,6 @@ public class SerialServer extends Network {
                 clientSocket = serverSocket.accept();
                 c.connected(true);
                 System.out.println("Kliens csatlakozott.");
-                c.clientConnected();
             } catch (IOException e) {
                 System.err.println("Kliens csatlakozása sikertelen.");
                 disconnect();

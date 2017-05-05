@@ -4,13 +4,12 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 public class Piece {
-	private Color color_L = new Color(1,1,1);
+	private Color color_L;
 	private Color color_B;
 	private Color color_R;
 	private Color color_T;
 	private Color color_C;
 	private ArrayList<Color> colors;
-	
 	private ArrayList<int[]> polyCoords;
 	
 	private int offsetX;

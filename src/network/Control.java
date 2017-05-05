@@ -99,10 +99,6 @@ public class Control {
         gui.serverNotAvailable();
     }
 
-    public void clientConnected() {
-        gui.clientConnected();
-    }
-
     public void clientDisconnected() {
         gui.clientDisconnected();
     }

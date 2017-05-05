@@ -4,7 +4,6 @@ import engine.Field;
 import graphics.Dimensions;
 import graphics.DrawArea;
 import graphics.FrameGUI;
-import network.Control;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,40 +27,43 @@ public class MultiPlayer {
         fGUI.setLayout(new FlowLayout(FlowLayout.RIGHT));
         BufferStrategy strategy = fGUI.getBufferStrategy();
         Random rand = new Random();
-        //int seed = rand.nextInt(1000000);
+
+        //Engine
         Field gameField = new Field(fGUI.getSeed());
-        //fGUI.getNet().sendSeed(seed);
+
+        //Drawareas
         DrawArea drawarea1 = new DrawArea(gameField);
         DrawArea drawarea2 = new DrawArea(fGUI);
-        drawarea2.setBlockSize(Dimensions.BLOCK_SIZE_3);
+        drawarea1.setBlockSize(Dimensions.BLOCK_SIZE_MAIN);
+        drawarea2.setBlockSize(Dimensions.BLOCK_SIZE_SEC);
 
         //Points label
-        JLabel points1 = new JLabel("Points: " + String.valueOf(gameField.getScore()));
+        JLabel points1 = new JLabel();
         points1.setFont(new Font("Serif", Font.PLAIN, 30));
         points1.setAlignmentX(Component.CENTER_ALIGNMENT);
-        JLabel points2 = new JLabel("Points: " + String.valueOf(gameField.getScore()));
+        JLabel points2 = new JLabel();
         points2.setFont(new Font("Serif", Font.PLAIN, 20));
         points2.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         //Level label
-        JLabel level1 = new JLabel("Level: " + String.valueOf(gameField.getLevel()));
+        JLabel level1 = new JLabel();
         level1.setFont(new Font("Serif", Font.PLAIN, 30));
         level1.setAlignmentX(Component.CENTER_ALIGNMENT);
-        JLabel level2 = new JLabel("Level: " + String.valueOf(gameField.getLevel()));
+        JLabel level2 = new JLabel();
         level2.setFont(new Font("Serif", Font.PLAIN, 20));
         level2.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         //Name label
-        JLabel name2 = new JLabel("Name2");
+        JLabel name2 = new JLabel();
         name2.setFont(new Font("Serif", Font.PLAIN, 30));
         name2.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        //Back button
-        JButton exitButton = new JButton("Back");
+        //Exit button
+        JButton exitButton = new JButton("Exit");
         exitButton.setFont(new Font("Serif", Font.PLAIN, 30));
         exitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        //resultPanel
+        //resultPanel1
         JPanel resultsPanel1 = new JPanel();
         resultsPanel1.setLayout(new BoxLayout(resultsPanel1,BoxLayout.Y_AXIS));
         resultsPanel1.add(Box.createRigidArea(new Dimension(100, 100)));
@@ -71,26 +73,35 @@ public class MultiPlayer {
         resultsPanel1.add(Box.createRigidArea(new Dimension(100, 100)));
         resultsPanel1.add(exitButton);
 
+        //resultPanel2
         JPanel resultsPanel2 = new JPanel();
         resultsPanel2.setLayout(new BoxLayout(resultsPanel2,BoxLayout.Y_AXIS));
         resultsPanel2.add(name2);
         resultsPanel2.add(drawarea2);
         resultsPanel2.add(points2);
         resultsPanel2.add(level2);
-        //resultsPanel2.setBorder(BorderFactory.createLineBorder(Color.black));
 
         //Frame
         fGUI.add(drawarea1);
         fGUI.add(resultsPanel1);
         fGUI.add(resultsPanel2);
 
-        drawarea1.setPreferredSize(new Dimension(10 * Dimensions.BLOCK_SIZE + 1, 20 * Dimensions.BLOCK_SIZE + 1));
-        drawarea2.setPreferredSize(new Dimension(10 * Dimensions.BLOCK_SIZE_3 + 1, 20 * Dimensions.BLOCK_SIZE_3 + 1));
+        //Panel sizes
+        drawarea1.setPreferredSize(new Dimension(10 * Dimensions.BLOCK_SIZE_MAIN + 1, 20 * Dimensions.BLOCK_SIZE_MAIN + 1));
+        drawarea2.setPreferredSize(new Dimension(10 * Dimensions.BLOCK_SIZE_SEC + 1, 20 * Dimensions.BLOCK_SIZE_SEC + 1));
         resultsPanel1.setPreferredSize((new Dimension(200,600)));
+
         timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
+                //Network send
+                if(fGUI.isConnected) {
+                    fGUI.getNet().sendMatrix(gameField.getMatrix());
+                    fGUI.getNet().sendScore(gameField.getScore());
+                }
+
+                //Network get
                 points1.setText("Points: " + String.valueOf(gameField.getScore()));
                 level1.setText("Level: " + String.valueOf(gameField.getLevel()));
                 name2.setText(fGUI.getName());
@@ -98,16 +109,14 @@ public class MultiPlayer {
                 int lvl2 = 0;
                 while (fGUI.getScore() > (500 + lvl2*lvl2*1000 - 1))
                     lvl2 += 1;
-                level2.setText("Level: " + Integer.toString(lvl2));
-                if(fGUI.isConnected) {
-                    fGUI.getNet().sendMatrix(gameField.getMatrix());
-                    fGUI.getNet().sendScore(gameField.getScore());
-                    //fGUI.getNet().sendName("sada");
-                }
+                level2.setText("Level: " + Integer.toString(lvl2+1));
 
+                //Draw
                 fGUI.update(fGUI.getBufferStrategy().getDrawGraphics());
                 fGUI.getBufferStrategy().show();
                 fGUI.pack();
+
+                //End game
                 if (!isGameOver && gameField.getMatrix()[0][0] == 9 && fGUI.getMatrix()[0][0] == 9) {
                     if(gameField.getScore() > fGUI.getScore())
                         JOptionPane.showMessageDialog(null, "Gratulálok! Nyertél!");
