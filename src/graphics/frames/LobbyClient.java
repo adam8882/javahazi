@@ -70,6 +70,10 @@ public class LobbyClient {
         conButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 fGUI.getNet().startClient("localhost");
+                if(timer != null) {
+                    timer.cancel();
+                    timer.purge();
+                }
 
                 timer = new Timer();
                 timer.scheduleAtFixedRate(new TimerTask() {
