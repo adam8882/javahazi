@@ -77,8 +77,6 @@ public class MultiPlayer {
             }
         }, 0, 20);
 
-
-
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -87,7 +85,6 @@ public class MultiPlayer {
                 fGUI.getNet().disconnect();
                 fGUI.isConnected = false;
                 fGUI.getContentPane().removeAll();
-                fGUI.setActualFrame(7);
             }
         });
 
@@ -120,7 +117,6 @@ public class MultiPlayer {
                         fGUI.getNet().disconnect();
                         fGUI.isConnected = false;
                         fGUI.getContentPane().removeAll();
-                        fGUI.setActualFrame(7);
                         break;
                 }
             }

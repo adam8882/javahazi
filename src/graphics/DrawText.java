@@ -50,8 +50,6 @@ public class DrawText extends JPanel {
     }
 
     public void paint(Graphics g) {
-        System.out.print(getMatrix().length);
-
         /*for (int i = 0; i < getMatrix()[0].length; i++) {
             for (int j = 0; j < getMatrix().length; j++) {
                 g.setColor(Colors.EMPTY_PIECE_BORDER);

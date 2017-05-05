@@ -75,7 +75,6 @@ public class MainMenu {
 		p4.setPreferredSize(new Dimension(600,120));
 		p5.setPreferredSize(new Dimension(600,120));
 		p6.setPreferredSize(new Dimension(600,120));
-
 		fGUI.setLayout(new GridLayout(6, 1));
 		fGUI.add(p1);
 		fGUI.add(p2);
