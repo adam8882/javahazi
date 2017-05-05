@@ -16,6 +16,7 @@ import graphics.*;
 
 public class LobbyClient {
 
+    Timer timer;
     public LobbyClient(FrameGUI fGUI) {
         fGUI.setTitle("Multiplayer client lobby");
 
@@ -70,7 +71,7 @@ public class LobbyClient {
             public void actionPerformed(ActionEvent e) {
                 fGUI.getNet().startClient("localhost");
 
-                Timer timer = new Timer();
+                timer = new Timer();
                 timer.scheduleAtFixedRate(new TimerTask() {
                     @Override
                     public void run() {
@@ -92,5 +93,7 @@ public class LobbyClient {
             }
         });
     }
-
+    public Timer getTimer() {
+        return timer;
+    }
 }

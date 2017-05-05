@@ -5,6 +5,7 @@ import graphics.frames.*;
 import network.Control;
 
 import javax.swing.*;
+import java.util.Timer;
 
 public class FrameGUI extends JFrame {
     Control net;
@@ -13,6 +14,8 @@ public class FrameGUI extends JFrame {
     int net_seed;
     public boolean isConnected;
     MultiPlayer multi;
+    LobbyClient lobby_c;
+    LobbyServer lobby_s;
 
     public FrameGUI() {
         this.net=new Control();
@@ -36,10 +39,10 @@ public class FrameGUI extends JFrame {
                 new SinglePlayer(this);
                 break;
             case 2:
-                new LobbyServer(this);
+                lobby_s = new LobbyServer(this);
                 break;
             case 3:
-                new LobbyClient(this);
+                lobby_c = new LobbyClient(this);
                 break;
             case 4:
                 break;
@@ -103,8 +106,7 @@ public class FrameGUI extends JFrame {
         net_score = 0;
         net_seed = 0;
         //JOptionPane.showMessageDialog(null, "A szerver lecsatlakozott!");
-        multi.getTimer().cancel();
-        multi.getTimer().purge();
+        killThemAll();
         setActualFrame(7);
     }
 
@@ -126,8 +128,22 @@ public class FrameGUI extends JFrame {
         net_score = 0;
         net_seed = 0;
         //JOptionPane.showMessageDialog(null, "Kliens lecsatlakozott.");
-        multi.getTimer().cancel();
-        multi.getTimer().purge();
+        killThemAll();
         setActualFrame(7);
+    }
+
+    private void killThemAll() {
+        if (multi != null){
+            multi.getTimer().cancel();
+            multi.getTimer().purge();
+        }
+        if (lobby_c != null){
+            lobby_c.getTimer().cancel();
+            lobby_c.getTimer().purge();
+        }
+        if (lobby_s != null){
+            lobby_s.getTimer().cancel();
+            lobby_s.getTimer().purge();
+        }
     }
 }

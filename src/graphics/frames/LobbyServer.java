@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import graphics.FrameGUI;
 
 public class LobbyServer {
+	Timer timer;
 
 	public LobbyServer(FrameGUI fGUI) {
 		fGUI.setTitle("Multiplayer server lobby");
@@ -85,7 +86,7 @@ public class LobbyServer {
         	public void actionPerformed(ActionEvent e) {
 				fGUI.getNet().startServer();
 				hostButton.setEnabled(false);
-				Timer timer = new Timer();
+				timer = new Timer();
 		        timer.scheduleAtFixedRate(new TimerTask() {
 		            @Override
 		            public void run() {
@@ -110,4 +111,7 @@ public class LobbyServer {
         });
 	}
 
+	public Timer getTimer() {
+		return timer;
+	}
 }
