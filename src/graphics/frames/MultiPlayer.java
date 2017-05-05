@@ -146,11 +146,12 @@ public class MultiPlayer {
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                timer.cancel();
-                timer.purge();
+                //timer.cancel();
+                //timer.purge();
+                fGUI.killThemAll();
                 fGUI.getNet().disconnect();
                 fGUI.isConnected = false;
-                fGUI.getContentPane().removeAll();
+                //fGUI.getContentPane().removeAll();
             }
         });
 
