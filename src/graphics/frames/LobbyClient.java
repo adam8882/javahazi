@@ -34,7 +34,7 @@ public class LobbyClient {
         ipLabel.setFont(new Font("Serif", Font.BOLD, 30));
 
         JTextField nameField = new JTextField();
-        nameField.setText("Client");
+        nameField.setText("Player (Client)");
         nameField.setFont(new Font("Serif", Font.PLAIN, 30));
 
         JTextField ipField = new JTextField();
@@ -95,7 +95,8 @@ public class LobbyClient {
 
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                fGUI.killThemAll();
+                timer.cancel();
+                timer.purge();
                 fGUI.getNet().disconnect();
                 fGUI.setActualFrame(7);
             }

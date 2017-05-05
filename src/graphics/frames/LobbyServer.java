@@ -45,7 +45,7 @@ public class LobbyServer {
 		ipLabel.setFont(new Font("Serif", Font.BOLD, 30));
 		
 		JTextField nameField = new JTextField();
-		nameField.setText("Host");
+		nameField.setText("Player (Host)");
 		nameField.setFont(new Font("Serif", Font.PLAIN, 30));
 		
 		JTextField ipField = new JTextField();

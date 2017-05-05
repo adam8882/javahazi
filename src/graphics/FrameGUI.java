@@ -119,12 +119,12 @@ public class FrameGUI extends JFrame {
         net_score = 0;
         net_seed = 0;
         killThemAll();
-        //JOptionPane.showMessageDialog(null, "A szerver lecsatlakozott!");
+        JOptionPane.showMessageDialog(null, "A kapcsolat megszakadt.");
         setActualFrame(7);
     }
 
     public void serverNotAvailable() {
-        //JOptionPane.showMessageDialog(null, "A szerver nem elérhető!");
+        JOptionPane.showMessageDialog(null, "A szerver nem elérhető!");
     }
 
     public void clientConnected() {
@@ -141,7 +141,7 @@ public class FrameGUI extends JFrame {
         net_score = 0;
         net_seed = 0;
         killThemAll();
-        //JOptionPane.showMessageDialog(null, "Kliens lecsatlakozott.");
+        JOptionPane.showMessageDialog(null, "A kapcsolat megszakadt.");
         setActualFrame(7);
     }
 
