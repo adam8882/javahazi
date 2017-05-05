@@ -86,6 +86,10 @@ public class LobbyServer {
         	public void actionPerformed(ActionEvent e) {
 				fGUI.getNet().startServer();
 				hostButton.setEnabled(false);
+				if(timer != null) {
+					timer.cancel();
+					timer.purge();
+				}
 				timer = new Timer();
 		        timer.scheduleAtFixedRate(new TimerTask() {
 		            @Override
