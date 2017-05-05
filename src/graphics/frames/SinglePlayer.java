@@ -22,9 +22,10 @@ public class SinglePlayer {
     public SinglePlayer(FrameGUI fGUI) {
         fGUI.setLayout(new FlowLayout(FlowLayout.RIGHT));
         BufferStrategy strategy = fGUI.getBufferStrategy();
+        Timer timer = new Timer();
+
         Random rand = new Random();
         int seed = rand.nextInt(1000000);
-        Timer timer = new Timer();
         Field gameField = new Field(seed);
         DrawArea drawarea = new DrawArea(gameField);
 
@@ -53,7 +54,7 @@ public class SinglePlayer {
         resultsPanel.add(Box.createRigidArea(new Dimension(100, 100)));
         resultsPanel.add(exitButton);
 
-
+        //Frame
         fGUI.add(drawarea);
         fGUI.add(resultsPanel);
 

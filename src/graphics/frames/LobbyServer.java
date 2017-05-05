@@ -91,9 +91,10 @@ public class LobbyServer {
 		            @Override
 		            public void run() {
 		            	if(fGUI.isConnected()) {
-							//timer.cancel();
-							//timer.purge();
 							fGUI.killThemAll();
+							String net_name = nameField.getText();
+							fGUI.getNet().sendName(net_name);
+							//fGUI.setName(net_name);
 							Random rand = new Random();
 							int net_seed = rand.nextInt(10000)+1;
 							fGUI.setNetSeed(net_seed);

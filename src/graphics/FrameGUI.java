@@ -13,6 +13,7 @@ public class FrameGUI extends JFrame {
     Integer[][] net_matrix;
     int net_score;
     int net_seed;
+    String net_name;
     public boolean isConnected;
     MultiPlayer multi;
     LobbyClient lobby_c;
@@ -72,6 +73,14 @@ public class FrameGUI extends JFrame {
 
     public void setScore(int net_score) {
         this.net_score = net_score;
+    }
+
+    public void setName(String net_name) {
+        this.net_name = net_name;
+    }
+
+    public String getName() {
+        return net_name;
     }
 
     public int getScore() {
