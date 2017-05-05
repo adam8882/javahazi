@@ -20,6 +20,7 @@ import java.util.TimerTask;
 
 public class MultiPlayer {
     boolean isGameOver = false;
+    Timer timer;
     public MultiPlayer(FrameGUI fGUI) {
         fGUI.setLayout(new GridLayout(2, 1));
         Field gameField = new Field(fGUI.getSeed());
@@ -45,7 +46,7 @@ public class MultiPlayer {
         drawarea2.setPreferredSize(new Dimension(300, 600));
         fGUI.requestFocusInWindow();
 
-        Timer timer = new Timer();
+        timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -129,5 +130,9 @@ public class MultiPlayer {
             public void keyReleased(KeyEvent e) {
             }
         });
+    }
+
+    public Timer getTimer() {
+        return timer;
     }
 }

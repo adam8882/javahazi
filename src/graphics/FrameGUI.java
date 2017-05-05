@@ -12,6 +12,7 @@ public class FrameGUI extends JFrame {
     int net_score;
     int net_seed;
     public boolean isConnected;
+    MultiPlayer multi;
 
     public FrameGUI() {
         this.net=new Control();
@@ -50,7 +51,7 @@ public class FrameGUI extends JFrame {
                 new MainMenu(this);
                 break;
             case 8:
-                new MultiPlayer(this);
+                multi = new MultiPlayer(this);
                 break;
 
         }
@@ -102,6 +103,8 @@ public class FrameGUI extends JFrame {
         net_score = 0;
         net_seed = 0;
         //JOptionPane.showMessageDialog(null, "A szerver lecsatlakozott!");
+        multi.getTimer().cancel();
+        multi.getTimer().purge();
         setActualFrame(7);
     }
 
@@ -123,6 +126,8 @@ public class FrameGUI extends JFrame {
         net_score = 0;
         net_seed = 0;
         //JOptionPane.showMessageDialog(null, "Kliens lecsatlakozott.");
+        multi.getTimer().cancel();
+        multi.getTimer().purge();
         setActualFrame(7);
     }
 }
