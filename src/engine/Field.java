@@ -88,7 +88,7 @@ public class Field {
         if(isGameOver()) {
             for (int h = 0; h < HEIGHT; h++)
                 for (int w = 0; w < WIDTH; w++)
-                    matrix[w][h] = 9;
+                    matrix[w][h] = PieceGenerator.TYPE_X;
             return;
         }
         for (int h = 0; h < HEIGHT; h++)

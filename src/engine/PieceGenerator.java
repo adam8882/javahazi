@@ -13,6 +13,7 @@ public class PieceGenerator {
     public static final int TYPE_S = 5;
     public static final int TYPE_T = 6;
     public static final int TYPE_Z = 7;
+    public static final int TYPE_X = 9;
 
     private int type;
     Random rand;
