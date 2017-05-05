@@ -25,12 +25,12 @@ public class MultiPlayer {
     boolean isGameOver = false;
     Timer timer;
     public MultiPlayer(FrameGUI fGUI) {
-        timer = new Timer();
         fGUI.setLayout(new FlowLayout(FlowLayout.RIGHT));
         BufferStrategy strategy = fGUI.getBufferStrategy();
         Random rand = new Random();
-        int seed = rand.nextInt(1000000);
-        Field gameField = new Field(seed);
+        //int seed = rand.nextInt(1000000);
+        Field gameField = new Field(fGUI.getSeed());
+        //fGUI.getNet().sendSeed(seed);
         DrawArea drawarea1 = new DrawArea(gameField);
         DrawArea drawarea2 = new DrawArea(fGUI);
         drawarea2.setBlockSize(Dimensions.BLOCK_SIZE_3);
@@ -87,6 +87,7 @@ public class MultiPlayer {
         drawarea1.setPreferredSize(new Dimension(10 * Dimensions.BLOCK_SIZE + 1, 20 * Dimensions.BLOCK_SIZE + 1));
         drawarea2.setPreferredSize(new Dimension(10 * Dimensions.BLOCK_SIZE_3 + 1, 20 * Dimensions.BLOCK_SIZE_3 + 1));
         resultsPanel1.setPreferredSize((new Dimension(200,600)));
+        timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
