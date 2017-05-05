@@ -84,7 +84,7 @@ public class LobbyClient {
                                 timer.cancel();
                                 timer.purge();
                                 String net_name = nameField.getText();
-                                fGUI.getNet().sendName(net_name);
+                                //fGUI.getNet().sendName(net_name);
                                 fGUI.setActualFrame(8);
                             }
                         }

@@ -35,8 +35,8 @@ public class FrameGUI extends JFrame {
     }
 
     public void setActualFrame(int actualFrame) {
-        killThemAll();
         this.getContentPane().removeAll();
+        killThemAll();
         switch (actualFrame) {
             case 1:
                 new SinglePlayer(this);
@@ -118,6 +118,7 @@ public class FrameGUI extends JFrame {
                 net_matrix[w][h] = 0;
         net_score = 0;
         net_seed = 0;
+        killThemAll();
         //JOptionPane.showMessageDialog(null, "A szerver lecsatlakozott!");
         setActualFrame(7);
     }
@@ -139,6 +140,7 @@ public class FrameGUI extends JFrame {
                 net_matrix[w][h] = 0;
         net_score = 0;
         net_seed = 0;
+        killThemAll();
         //JOptionPane.showMessageDialog(null, "Kliens lecsatlakozott.");
         setActualFrame(7);
     }

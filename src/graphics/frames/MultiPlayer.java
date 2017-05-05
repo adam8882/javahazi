@@ -25,32 +25,9 @@ public class MultiPlayer {
     boolean isGameOver = false;
     Timer timer;
     public MultiPlayer(FrameGUI fGUI) {
-        /*Field gameField = new Field(fGUI.getSeed());
-        JLabel points1 = new JLabel("Pontszám: " + String.valueOf(gameField.getScore()));
-        JLabel level1 = new JLabel("LvL: " + String.valueOf(gameField.getLevel()));
-        JLabel points2 = new JLabel("Pontszám: " + "0");
-        JLabel level2 = new JLabel("LvL: " + "0");
-        JButton exitButton = new JButton("Kilépés");
-        DrawArea drawarea1 = new DrawArea(gameField);
-        DrawArea drawarea2 = new DrawArea(fGUI);
-        JPanel panel = new JPanel();
-        fGUI.add(panel);
-
-        panel.add(drawarea1);
-        panel.add(drawarea2);
-        panel.add(points1);
-        panel.add(points2);
-        panel.add(level1);
-        panel.add(level2);
-        panel.add(exitButton);
-        drawarea1.setPreferredSize(new Dimension(10*Dimensions.BLOCK_SIZE+1,20*Dimensions.BLOCK_SIZE+1));
-        drawarea2.setPreferredSize(new Dimension(10*Dimensions.BLOCK_SIZE+1,20*Dimensions.BLOCK_SIZE+1));
-        fGUI.requestFocusInWindow();
-
-        timer = new Timer();*/
+        timer = new Timer();
         fGUI.setLayout(new FlowLayout(FlowLayout.RIGHT));
         BufferStrategy strategy = fGUI.getBufferStrategy();
-        Timer timer = new Timer();
         Random rand = new Random();
         int seed = rand.nextInt(1000000);
         Field gameField = new Field(seed);
@@ -146,12 +123,11 @@ public class MultiPlayer {
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //timer.cancel();
-                //timer.purge();
-                fGUI.killThemAll();
+                timer.cancel();
+                timer.purge();
                 fGUI.getNet().disconnect();
                 fGUI.isConnected = false;
-                //fGUI.getContentPane().removeAll();
+                fGUI.getContentPane().removeAll();
             }
         });
 
