@@ -40,17 +40,14 @@ public class FrameGUI extends JFrame {
         switch (actualFrame) {
             case 1:
                 new SinglePlayer(this);
-                setTitle("Singleplayer Tetris");
                 break;
             case 2:
                 this.setLayout(new GridLayout(2, 1));
                 lobby_s = new LobbyServer(this);
-                setTitle("Multiplayer server lobby");
                 break;
             case 3:
                 this.setLayout(new GridLayout(2, 1));
                 lobby_c = new LobbyClient(this);
-                setTitle("Multiplayer kliens lobby");
                 break;
             case 4:
                 break;
@@ -60,11 +57,9 @@ public class FrameGUI extends JFrame {
                 break;
             case 7:
                 new MainMenu(this);
-                setTitle("Tetris");
                 break;
             case 8:
                 multi = new MultiPlayer(this);
-                setTitle("Multiplayer Tetris");
                 break;
 
         }
