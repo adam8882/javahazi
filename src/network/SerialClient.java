@@ -39,6 +39,11 @@ public class SerialClient extends Network {
                             ctrl.seedReceived(seed);
                         }
                         break;
+                        case 4: {
+                            String name = (String) in.readObject();
+                            ctrl.nameReceived(name);
+                        }
+                        break;
                     }
                 }
             } catch (Exception ex) {
@@ -109,6 +114,19 @@ public class SerialClient extends Network {
             out.flush();
         } catch (IOException ex) {
             System.err.println("Seed küldés hiba.");
+        }
+    }
+
+    @Override
+    void sendName(String name) {
+        if (out == null)
+            return;
+        try {
+            out.writeByte(4);
+            out.writeObject(name);
+            out.flush();
+        } catch (IOException ex) {
+            System.err.println("Név küldés hiba.");
         }
     }
 

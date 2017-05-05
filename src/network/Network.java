@@ -17,4 +17,6 @@ abstract class Network {
     abstract void sendScore(int score);
 
     abstract void sendSeed(int seed);
+
+    abstract void sendName(String name);
 }

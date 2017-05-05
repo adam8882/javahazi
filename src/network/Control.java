@@ -57,6 +57,12 @@ public class Control {
         net.sendSeed(seed);
     }
 
+    public void sendName(String name) {
+        if (net == null)
+            return;
+        net.sendName(name);
+    }
+
     public void matrixReceived(Integer[][] matrix) {
         if (gui == null)
             return;
@@ -73,6 +79,12 @@ public class Control {
         if (gui == null)
             return;
         gui.setNetSeed(seed);
+    }
+
+    public void nameReceived(String name) {
+        if (gui == null)
+            return;
+        gui.setName(name);
     }
 
     public void connected(boolean bool) {

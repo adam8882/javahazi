@@ -50,11 +50,13 @@ public class DrawArea extends JPanel {
             for (int j = 0; j < playGroundHeight; j++) {
                 type = matrix[i][j];
                 if (type != 0) {
-                    Piece p = new Piece(Dimensions.BLOCK_SIZE / 2 + Dimensions.BLOCK_SIZE * i, Dimensions.BLOCK_SIZE / 2 + Dimensions.BLOCK_SIZE * j, type,Dimensions.BLOCK_SIZE);
+                    Piece p = new Piece(this.blockSize / 2 + this.blockSize * i, this.blockSize / 2 + this.blockSize * j, type,this.blockSize);
                     drawPiece(p, g);
                 }
             }
         }
+        g.setColor(Color.BLACK);
+        g.drawRect(0,0,10*this.blockSize,20*this.blockSize);
     }
 
     public void drawPiece(Piece p, Graphics g) {
@@ -87,5 +89,8 @@ public class DrawArea extends JPanel {
         g.fillPolygon(xt, yt, 4);
         g.setColor(color_C);
         g.fillPolygon(xc, yc, 4);
+    }
+    public void setBlockSize(int blockSize) {
+        this.blockSize=blockSize;
     }
 }
