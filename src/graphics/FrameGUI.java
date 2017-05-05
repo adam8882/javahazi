@@ -39,8 +39,6 @@ public class FrameGUI extends JFrame {
         killThemAll();
         switch (actualFrame) {
             case 1:
-                //this.setLayout(new GridLayout(2, 1));
-                //this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
                 new SinglePlayer(this);
                 break;
             case 2:

@@ -100,6 +100,7 @@ public class MultiPlayer {
         resultsPanel2.add(drawarea2);
         resultsPanel2.add(points2);
         resultsPanel2.add(level2);
+        //resultsPanel2.setBorder(BorderFactory.createLineBorder(Color.black));
 
         //Frame
         fGUI.add(drawarea1);
@@ -112,14 +113,14 @@ public class MultiPlayer {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                points1.setText("Pontszám: " + String.valueOf(gameField.getScore()));
-                level1.setText("LvL: " + String.valueOf(gameField.getLevel()));
+                points1.setText("Points: " + String.valueOf(gameField.getScore()));
+                level1.setText("Level: " + String.valueOf(gameField.getLevel()));
                 name2.setText(fGUI.getName());
-                points2.setText("Pontszám: " + String.valueOf(fGUI.getScore()));
+                points2.setText("Points: " + String.valueOf(fGUI.getScore()));
                 int lvl2 = 0;
                 while (fGUI.getScore() > (500 + lvl2*lvl2*1000 - 1))
                     lvl2 += 1;
-                level2.setText("LvL: " + Integer.toString(lvl2));
+                level2.setText("Level: " + Integer.toString(lvl2));
                 if(fGUI.isConnected) {
                     fGUI.getNet().sendMatrix(gameField.getMatrix());
                     fGUI.getNet().sendScore(gameField.getScore());
