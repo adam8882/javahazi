@@ -81,8 +81,7 @@ public class LobbyClient {
                     public void run() {
                         if (fGUI.isConnected) {
                             if (fGUI.getSeed() != 0) {
-                                timer.cancel();
-                                timer.purge();
+                                fGUI.killThemAll();
                                 fGUI.setActualFrame(8);
                             }
                         }

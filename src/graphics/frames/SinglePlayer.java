@@ -20,33 +20,55 @@ import java.util.TimerTask;
 public class SinglePlayer {
     boolean isGameOver = false;
     public SinglePlayer(FrameGUI fGUI) {
+        fGUI.setLayout(new FlowLayout(FlowLayout.RIGHT));
         BufferStrategy strategy = fGUI.getBufferStrategy();
         Random rand = new Random();
         int seed = rand.nextInt(1000000);
         Timer timer = new Timer();
         Field gameField = new Field(seed);
         DrawArea drawarea = new DrawArea(gameField);
-        JLabel points = new JLabel("Pontszám: " + String.valueOf(gameField.getScore()));
-        JLabel level = new JLabel("LvL: " + String.valueOf(gameField.getLevel()));
-        JButton exitButton = new JButton("Kilépés");
-        JPanel panel = new JPanel();
-        fGUI.add(panel);
 
-        panel.add(drawarea);
-        panel.add(points);
-        panel.add(level);
-        panel.add(exitButton);
-        drawarea.setPreferredSize(new Dimension(10 * Dimensions.BLOCK_SIZE, 20 * Dimensions.BLOCK_SIZE));
+        //Points label
+        JLabel points = new JLabel("Points: " + String.valueOf(gameField.getScore()));
+        points.setFont(new Font("Serif", Font.PLAIN, 30));
+        points.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        //Level label
+        JLabel level = new JLabel("Level: " + String.valueOf(gameField.getLevel()));
+        level.setFont(new Font("Serif", Font.PLAIN, 30));
+        level.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        //Back button
+        JButton exitButton = new JButton("Back");
+        exitButton.setFont(new Font("Serif", Font.PLAIN, 30));
+        exitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        //resultPanel
+        JPanel resultsPanel = new JPanel();
+        resultsPanel.setLayout(new BoxLayout(resultsPanel,BoxLayout.Y_AXIS));
+        resultsPanel.add(Box.createRigidArea(new Dimension(100, 100)));
+        resultsPanel.add(points);
+        resultsPanel.add(Box.createRigidArea(new Dimension(100, 100)));
+        resultsPanel.add(level);
+        resultsPanel.add(Box.createRigidArea(new Dimension(100, 100)));
+        resultsPanel.add(exitButton);
+
+
+        fGUI.add(drawarea);
+        fGUI.add(resultsPanel);
+
+        drawarea.setPreferredSize(new Dimension(10 * Dimensions.BLOCK_SIZE + 1, 20 * Dimensions.BLOCK_SIZE + 1));
+        resultsPanel.setPreferredSize((new Dimension(200,600)));
+
         fGUI.requestFocusInWindow();
-        fGUI.pack();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 fGUI.update(fGUI.getBufferStrategy().getDrawGraphics());
-                //frame.pack();
                 fGUI.getBufferStrategy().show();
-                points.setText("Pontszám: " + String.valueOf(gameField.getScore()));
-                level.setText("LvL: " + String.valueOf(gameField.getLevel()));
+                fGUI.pack();
+                points.setText("Points: " + String.valueOf(gameField.getScore()));
+                level.setText("Level: " + String.valueOf(gameField.getLevel()));
                 if (!isGameOver && gameField.getMatrix()[0][0] == 9) {
                     JOptionPane.showMessageDialog(null, "Game Over\nElért pontszámod: " + String.valueOf(gameField.getScore()));
                     isGameOver = true;
