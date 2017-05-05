@@ -106,7 +106,8 @@ public class LobbyServer {
         
         backButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-            	fGUI.setActualFrame(7);
+            	fGUI.killThemAll();
+        		fGUI.setActualFrame(7);
             }
         });
 	}

@@ -89,6 +89,7 @@ public class LobbyClient {
 
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                fGUI.killThemAll();
                 fGUI.setActualFrame(7);
             }
         });

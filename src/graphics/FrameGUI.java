@@ -34,6 +34,7 @@ public class FrameGUI extends JFrame {
 
     public void setActualFrame(int actualFrame) {
         this.getContentPane().removeAll();
+        killThemAll();
         switch (actualFrame) {
             case 1:
                 new SinglePlayer(this);
@@ -132,7 +133,7 @@ public class FrameGUI extends JFrame {
         setActualFrame(7);
     }
 
-    private void killThemAll() {
+    public void killThemAll() {
         if (multi != null){
             multi.getTimer().cancel();
             multi.getTimer().purge();
