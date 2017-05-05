@@ -137,17 +137,23 @@ public class FrameGUI extends JFrame {
     }
 
     public void killThemAll() {
-        if (multi != null && multi.getTimer()!=null){
-            multi.getTimer().cancel();
-            multi.getTimer().purge();
+        if (multi != null) {
+            if (multi.getTimer() != null){
+                multi.getTimer().cancel();
+                multi.getTimer().purge();
+            }
         }
-        if (lobby_c != null && lobby_s.getTimer()!=null){
-            lobby_c.getTimer().cancel();
-            lobby_c.getTimer().purge();
+        if (lobby_c != null){
+            if(lobby_c.getTimer()!=null) {
+                lobby_c.getTimer().cancel();
+                lobby_c.getTimer().purge();
+            }
         }
-        if (lobby_s != null && lobby_s.getTimer()!=null){
-            lobby_s.getTimer().cancel();
-            lobby_s.getTimer().purge();
+        if (lobby_s != null){
+            if(lobby_s.getTimer()!=null) {
+                lobby_s.getTimer().cancel();
+                lobby_s.getTimer().purge();
+            }
         }
     }
 }
