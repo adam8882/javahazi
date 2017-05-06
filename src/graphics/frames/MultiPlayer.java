@@ -103,7 +103,7 @@ public class MultiPlayer {
 
                 //Network get
                 points1.setText("Points: " + String.valueOf(gameField.getScore()));
-                level1.setText("Level: " + String.valueOf(gameField.getLevel()));
+                level1.setText("Level: " + String.valueOf(gameField.getLevel() + 1));
                 name2.setText(fGUI.getName());
                 points2.setText("Points: " + String.valueOf(fGUI.getScore()));
                 int lvl2 = 0;

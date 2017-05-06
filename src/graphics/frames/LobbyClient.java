@@ -95,9 +95,11 @@ public class LobbyClient {
 
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                timer.cancel();
-                timer.purge();
                 fGUI.getNet().disconnect();
+                if(timer!=null) {
+                    timer.cancel();
+                    timer.purge();
+                }
                 fGUI.setActualFrame(7);
             }
         });

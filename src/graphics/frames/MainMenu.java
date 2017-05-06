@@ -18,7 +18,6 @@ public class MainMenu {
 		ArrayList<Object[][]> sp3 = new ArrayList<>();
 		ArrayList<Object[][]> sp4 = new ArrayList<>();
 		ArrayList<Object[][]> sp5 = new ArrayList<>();
-		ArrayList<Object[][]> sp6 = new ArrayList<>();
 		sp1.add(Fonts.S);
 		sp1.add(Fonts.I);
 		sp1.add(Fonts.N);
@@ -46,42 +45,34 @@ public class MainMenu {
 		sp3.add(Fonts.N);
 		sp3.add(Fonts.T);
 
-		sp4.add(Fonts.H);
-		sp4.add(Fonts.E);
-		sp4.add(Fonts.L);
-		sp4.add(Fonts.P);
+		sp4.add(Fonts.A);
+		sp4.add(Fonts.B);
+		sp4.add(Fonts.O);
+		sp4.add(Fonts.U);
+		sp4.add(Fonts.T);
 
-		sp5.add(Fonts.A);
-		sp5.add(Fonts.B);
-		sp5.add(Fonts.O);
-		sp5.add(Fonts.U);
+		sp5.add(Fonts.E);
+		sp5.add(Fonts.X);
+		sp5.add(Fonts.I);
 		sp5.add(Fonts.T);
-
-		sp6.add(Fonts.E);
-		sp6.add(Fonts.X);
-		sp6.add(Fonts.I);
-		sp6.add(Fonts.T);
 
 		DrawText p1 = new DrawText(sp1);
 		DrawText p2 = new DrawText(sp2);
 		DrawText p3 = new DrawText(sp3);
 		DrawText p4 = new DrawText(sp4);
 		DrawText p5 = new DrawText(sp5);
-		DrawText p6 = new DrawText(sp6);
 
-		p1.setPreferredSize(new Dimension(600,120));
-		p2.setPreferredSize(new Dimension(600,120));
-		p3.setPreferredSize(new Dimension(600,120));
-		p4.setPreferredSize(new Dimension(600,120));
-		p5.setPreferredSize(new Dimension(600,120));
-		p6.setPreferredSize(new Dimension(600,120));
-		fGUI.setLayout(new GridLayout(6, 1));
+		p1.setPreferredSize(new Dimension(600,144));
+		p2.setPreferredSize(new Dimension(600,144));
+		p3.setPreferredSize(new Dimension(600,144));
+		p4.setPreferredSize(new Dimension(600,144));
+		p5.setPreferredSize(new Dimension(600,144));
+		fGUI.setLayout(new GridLayout(5, 1));
 		fGUI.add(p1);
 		fGUI.add(p2);
 		fGUI.add(p3);
 		fGUI.add(p4);
 		fGUI.add(p5);
-		fGUI.add(p6);
 
 		fGUI.pack();
 
@@ -106,7 +97,14 @@ public class MainMenu {
 			}
 		});
 
-		p6.addMouseListener(new MouseAdapter() {
+		p4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				fGUI.setActualFrame(4);
+			}
+		});
+
+		p5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				fGUI.dispose();

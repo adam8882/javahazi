@@ -68,7 +68,7 @@ public class SinglePlayer {
                 fGUI.update(fGUI.getBufferStrategy().getDrawGraphics());
                 fGUI.getBufferStrategy().show();
                 fGUI.pack();
-                points.setText("Points: " + String.valueOf(gameField.getScore()));
+                points.setText("Points: " + String.valueOf(gameField.getScore() + 1));
                 level.setText("Level: " + String.valueOf(gameField.getLevel()));
                 if (!isGameOver && gameField.getMatrix()[0][0] == 9) {
                     JOptionPane.showMessageDialog(null, "Game Over\nElért pontszámod: " + String.valueOf(gameField.getScore()));

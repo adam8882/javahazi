@@ -112,8 +112,10 @@ public class LobbyServer {
         backButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
 				fGUI.getNet().disconnect();
-            	timer.cancel();
-            	timer.purge();
+				if(timer!=null) {
+					timer.cancel();
+					timer.purge();
+				}
         		fGUI.setActualFrame(7);
             }
         });

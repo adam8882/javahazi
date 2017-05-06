@@ -53,10 +53,9 @@ public class FrameGUI extends JFrame {
                 lobby_c = new LobbyClient(this);
                 break;
             case 4:
-                break;
-            case 5:
-                break;
-            case 6:
+                this.setTitle("About");
+                this.setLayout(new GridLayout(1, 1));
+                new About(this);
                 break;
             case 7:
                 this.setTitle("Main Menu");

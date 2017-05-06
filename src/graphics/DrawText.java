@@ -42,7 +42,7 @@ public class DrawText extends JPanel {
             for (int j = 0; j < getMatrix()[0].length; j++) {
                 type = (int)getMatrix()[i][j];
                 if (type != 0) {
-                    Piece p = new Piece(getBlockSize() / 2 + getBlockSize() * i + (600-getMatrix().length*10)/2, getBlockSize() / 2 + getBlockSize() * j+30, type,getBlockSize());
+                    Piece p = new Piece(getBlockSize() / 2 + getBlockSize() * i + (600-getMatrix().length*10)/2, getBlockSize() / 2 + getBlockSize() * j+43, type,getBlockSize());
                     drawPiece(p, g);
                 }
             }
