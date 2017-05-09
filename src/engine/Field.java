@@ -1,4 +1,5 @@
 package engine;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -36,10 +37,10 @@ public class Field {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                checkIsPieceDown();
-                piece.shiftDown(fixmatrix);
-                generateMatrix();
-                checkIsPieceDown();
+                    checkIsPieceDown();
+                    piece.shiftDown(fixmatrix);
+                    generateMatrix();
+                    checkIsPieceDown();
             }
         }, 0, 1000);
     }
@@ -51,10 +52,10 @@ public class Field {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                checkIsPieceDown();
-                piece.shiftDown(fixmatrix);
-                generateMatrix();
-                checkIsPieceDown();
+                    checkIsPieceDown();
+                    piece.shiftDown(fixmatrix);
+                    generateMatrix();
+                    checkIsPieceDown();
             }
         }, 0, t);
     }
@@ -84,8 +85,9 @@ public class Field {
             isPieceDown = false;
         }
     }
+
     private void generateMatrix() {
-        if(isGameOver()) {
+        if (isGameOver()) {
             for (int h = 0; h < HEIGHT; h++)
                 for (int w = 0; w < WIDTH; w++)
                     matrix[w][h] = PieceGenerator.TYPE_X;
@@ -154,7 +156,7 @@ public class Field {
 
     public Integer[][] getMatrix() {
         if (piece != null && !isPieceDown) generateMatrix();
-        Integer [][] matrix2 = new Integer[WIDTH][HEIGHT];
+        Integer[][] matrix2 = new Integer[WIDTH][HEIGHT];
         for (int h = 0; h < HEIGHT; h++)
             for (int w = 0; w < WIDTH; w++)
                 matrix2[w][h] = matrix[w][h];
@@ -176,16 +178,24 @@ public class Field {
                 lines++;
             }
         }
-        switch (lines){
-            case 1: score += 40  *(level+1); break;
-            case 2: score += 100 *(level+1); break;
-            case 3: score += 300 *(level+1); break;
-            case 4: score += 1200*(level+1); break;
+        switch (lines) {
+            case 1:
+                score += 40 * (level + 1);
+                break;
+            case 2:
+                score += 100 * (level + 1);
+                break;
+            case 3:
+                score += 300 * (level + 1);
+                break;
+            case 4:
+                score += 1200 * (level + 1);
+                break;
         }
-        while (score > (500 + level*level*1000 - 1)) {
+        while (score > (500 + level * level * 1000 - 1)) {
             level += 1;
-            int droptime = 1000-level*100;
-            if(droptime > 100)
+            int droptime = 1000 - level * 100;
+            if (droptime > 100)
                 setDropTime(droptime);
             else
                 setDropTime(100);
@@ -195,13 +205,13 @@ public class Field {
     private void clearRow(int row) {
         for (; row > 0; row--)
             for (int i = 0; i < WIDTH; i++) {
-                fixmatrix[i][row]=fixmatrix[i][row-1];
+                fixmatrix[i][row] = fixmatrix[i][row - 1];
             }
     }
 
-    public boolean isGameOver(){
+    public boolean isGameOver() {
         for (int i = 0; i < WIDTH; i++)
-            if(fixmatrix[i][1] != 0)
+            if (fixmatrix[i][1] != 0)
                 return true;
         return false;
     }
