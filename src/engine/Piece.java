@@ -29,28 +29,33 @@ public abstract class Piece {
     public void shiftDown(Integer fixmatrix[][]) {
         if (isShiftDownValid(fixmatrix))
             position.setY(position.getY() + 1);
+        generateCoordinates();
     }
 
     public void shiftRight(Integer fixmatrix[][]) {
         if (isShiftRightValid(fixmatrix))
             position.setX(position.getX() + 1);
+        generateCoordinates();
     }
 
     public void shiftLeft(Integer fixmatrix[][]) {
         if (isShiftLeftValid(fixmatrix))
             position.setX(position.getX() - 1);
+        generateCoordinates();
     }
 
     public void rotateRight(Integer fixmatrix[][]) {
         if (isRotateRightValid(fixmatrix))
             if (state > 0) state--;
             else state = 3;
+        generateCoordinates();
     }
 
     public void rotateLeft(Integer fixmatrix[][]) {
         if (isRotateLeftValid(fixmatrix))
             if (state < 3) state++;
             else state = 0;
+        generateCoordinates();
     }
 
 
@@ -74,7 +79,7 @@ public abstract class Piece {
             if (blocks.get(i).getX() < (Field.WIDTH - 1) &&
                     blocks.get(i).getY() >= 0 &&
                     blocks.get(i).getX() >= 0)
-                if (fixmatrix[blocks.get(i).getX()+1][blocks.get(i).getY()] == 0)
+                if (fixmatrix[blocks.get(i).getX() + 1][blocks.get(i).getY()] == 0)
                     ;
                 else
                     return false;
@@ -89,7 +94,7 @@ public abstract class Piece {
             if (blocks.get(i).getX() > 0 &&
                     blocks.get(i).getY() >= 0 &&
                     blocks.get(i).getX() >= 0)
-                if (fixmatrix[blocks.get(i).getX()-1][blocks.get(i).getY()] == 0)
+                if (fixmatrix[blocks.get(i).getX() - 1][blocks.get(i).getY()] == 0)
                     ;
                 else
                     return false;
